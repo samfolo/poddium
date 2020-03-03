@@ -13,4 +13,10 @@ describe('<App />', () => {
   it('renders without error', () => {
     expect(appComponent).toHaveLength(1);
   });
-})
+
+  it('renders a <LoginPage /> when a user is not logged in', () => {
+    wrapper = setup(App, {}, { isLoggedIn: false });
+    const loginPage = findByTestAttr(wrapper, 'login-page');
+    expect(loginPage).toHaveLength(1);
+  });
+});
