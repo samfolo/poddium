@@ -1,5 +1,5 @@
 import Input from './Input';
-import { setup, findByTestAttr } from '../../testHelpers';
+import { setup, findByTestAttr } from '../../../testHelpers';
 
 describe('<Input />', () => {
   let wrapper;
