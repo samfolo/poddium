@@ -20,4 +20,6 @@ describe('<SignUpForm />', () => {
     it('renders a password field', () => expectLengthOf(wrapper, 'input-password').toBe(1));
     it('renders a password confirmation field', () => expectLengthOf(wrapper, 'input-passwordConfirmation').toBe(1));
   });
+
+  it('renders a submit button', () => expectLengthOf(wrapper, 'submit-form-sign-up').toBe(1));
 });

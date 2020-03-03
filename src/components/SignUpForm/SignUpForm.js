@@ -9,6 +9,7 @@ class SignUpForm extends React.Component {
         <div data-test="input-email" />
         <div data-test="input-password" />
         <div data-test="input-passwordConfirmation" />
+        <div data-test="submit-form-sign-up" />
       </div>
     );
   }
