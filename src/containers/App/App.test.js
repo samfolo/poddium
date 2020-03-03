@@ -1,4 +1,3 @@
-import React from 'react';
 import App from './App';
 import { setup, findByTestAttr } from '../../testHelpers';
 
