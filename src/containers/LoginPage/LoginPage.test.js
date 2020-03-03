@@ -25,4 +25,31 @@ describe('<LoginPage />', () => {
     expect(signInButton).toHaveLength(1);
     expect(signInButton.text()).toEqual('Sign in');
   });
+
+  describe('signing up and signing in', () => {
+    let signInForm;
+    let signUpForm;
+
+    const findAllForms = () => {
+      signInForm = findByTestAttr(wrapper, 'sign-in-form');
+      signUpForm = findByTestAttr(wrapper, 'sign-up-form');
+    }
+
+    beforeEach(() => {
+      findAllForms();
+    });
+
+    it('does not initially render any form', () => {
+      expect(signInForm).toHaveLength(0);
+      expect(signUpForm).toHaveLength(0);
+    });
+
+    it('renders a `Sign in` form when user wants to sign in', () => {
+      wrapper = setup(LoginPage, {}, { isSignIn: true });
+      findAllForms();
+
+      expect(signInForm).toHaveLength(1);
+      expect(signUpForm).toHaveLength(0);
+    });
+  })
 })

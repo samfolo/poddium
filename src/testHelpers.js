@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 export const setup = (Component, props = {}, state = null) => {
   let wrapper = shallow(<Component { ...props } />);
-  if (state) wrapper.setState({ state });
+  if (state) wrapper.setState(state);
   return wrapper;
 }
 
