@@ -25,3 +25,16 @@ export const expectLengthOf = (wrapper, testAttr) => {
 
 export const findByTestAttr = (wrapper, testAttr) => wrapper.find(`[data-test='${testAttr}']`);
 export const findById = (wrapper, id) => wrapper.find({ id });
+
+export const fill = field => ({ with: value => field.simulate('change', { target: { value } }) });
+
+export const signUp = (wrapper, data) => {
+  findByTestAttr(wrapper, 'sign-up').simulate('click');
+
+  fill(findByTestAttr(wrapper, 'input-username')).with(data.username || '');
+  fill(findByTestAttr(wrapper, 'input-email')).with(data.email || '');
+  fill(findByTestAttr(wrapper, 'input-password')).with(data.password || '');
+  fill(findByTestAttr(wrapper, 'input-passwordConfirmation')).with(data.passwordConfirmation || '');
+
+  findByTestAttr(wrapper, 'submit-form-sign-up').simulate('click');
+}

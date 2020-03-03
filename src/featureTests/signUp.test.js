@@ -1,42 +1,24 @@
-import { mountedSetup, findByTestAttr } from '../testHelpers';
+import { mountedSetup, findByTestAttr, signUp } from '../testHelpers';
 import App from '../containers/App/App';
 
 describe('signing up', () => {
   let wrapper;
-  let signUpButton;
-  let usernameField;
-  let emailField;
-  let passwordField;
-  let passwordConfirmationField;
-  let submitButton;
-
   let loginPage;
   let profilePage;
   
   beforeEach(() => {
     wrapper = mountedSetup(App, {}, ['/login']);
-    signUpButton = findByTestAttr(wrapper, 'sign-up');
   });
 
-  const fill = field => ({ with: value => field.simulate('change', { target: { value } }) });
-
   test('a user named Elodie signs up correctly', () => {
-    signUpButton.simulate('click');
+    const elodie = {
+      username: 'Elodie',
+      email: 'elodie@example.com',
+      password: '1234icecream',
+      passwordConfirmation: '1234icecream'
+    }
 
-    usernameField = findByTestAttr(wrapper, 'input-username');
-    fill(usernameField).with('Elodie');
-
-    emailField = findByTestAttr(wrapper, 'input-email');
-    fill(emailField).with('elodie@example.com');
-    
-    passwordField = findByTestAttr(wrapper, 'input-password');
-    fill(passwordField).with('1234icecream');
-
-    passwordConfirmationField = findByTestAttr(wrapper, 'input-passwordConfirmation');
-    fill(passwordConfirmationField).with('1234icecream');
-
-    submitButton = findByTestAttr(wrapper, 'submit-form-sign-up');
-    submitButton.simulate('click');
+    signUp(wrapper, elodie);
 
     loginPage = findByTestAttr(wrapper, 'component-login-page');
     profilePage = findByTestAttr(wrapper, 'component-profile-page');
@@ -45,4 +27,6 @@ describe('signing up', () => {
     expect(loginPage).toHaveLength(0);
     expect(profilePage.text()).toContain('Elodie');
   });
+
+
 })
