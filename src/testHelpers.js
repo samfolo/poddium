@@ -1,10 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { MemoryRouter } from 'react-router';
 
 export const setup = (Component, props = {}, state = null) => {
   let wrapper = shallow(<Component { ...props } />);
   if (state) wrapper.setState(state);
   return wrapper;
+}
+
+export const mountedSetup = (Component, props = {}, initialEntries = ['/']) => {
+  return mount(
+    <MemoryRouter initialEntries={[...initialEntries]}>
+      <Component { ...props } />
+    </MemoryRouter>
+  );
 }
 
 export const expectLengthOf = (wrapper, testAttr) => {
