@@ -14,12 +14,12 @@ describe('<ProfilePage />', () => {
     expect(profilePageComponent).toHaveLength(1);
   });
 
-  const runTestWith = username => {
-    wrapper = setup(ProfilePage, { user: { username } });
-    expect(wrapper.text()).toContain(username);
-  }
-
   describe('text()', () => {
+    const runTestWith = username => {
+      wrapper = setup(ProfilePage, { user: { username } });
+      expect(wrapper.text()).toContain(username);
+    }
+    
     it('renders `Sam` when passed `Sam`', () => runTestWith('Sam'));
     it('renders `Elodie` when passed `Elodie`', () => runTestWith('Elodie'));
     it('renders `June` when passed `June`', () => runTestWith('June'));

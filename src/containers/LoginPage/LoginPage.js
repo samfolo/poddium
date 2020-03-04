@@ -2,15 +2,20 @@ import React from 'react';
 import Classes from './LoginPage.module.css';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import { Redirect } from 'react-router-dom';
+import * as actionCreators from '../../store/actions';
+import { connect } from 'react-redux';
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
   state = {
     isSignIn: false,
     isSignUp: false,
     isAuthenticated: false,
   }
 
-  handleSubmit = () => this.setState({ isAuthenticated: true });
+  handleSubmit = user => {
+    this.props.onSubmit(user);
+    this.setState({ isAuthenticated: true })
+  };
 
   toggleSignUp = () => this.setState(prevState => ({ isSignUp: !prevState.isSignUp }));
 
@@ -32,4 +37,10 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+const mapDispatchToProps =  dispatch => {
+  return {
+    onSubmit: user => dispatch(actionCreators.storeUser(user)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoginPage);

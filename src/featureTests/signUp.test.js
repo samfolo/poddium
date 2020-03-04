@@ -5,6 +5,14 @@ describe('signing up', () => {
   let wrapper;
   let loginPage;
   let profilePage;
+
+  const expectToBeTakenToTheProfilePage = () => {
+    loginPage = findByTestAttr(wrapper, 'component-login-page');
+    profilePage = findByTestAttr(wrapper, 'component-profile-page');
+
+    expect(profilePage).toHaveLength(1);
+    expect(loginPage).toHaveLength(0);
+  }
   
   beforeEach(() => {
     wrapper = mountedSetup(App, {}, ['/login']);
@@ -19,14 +27,8 @@ describe('signing up', () => {
     }
 
     signUp(wrapper, elodie);
-
-    loginPage = findByTestAttr(wrapper, 'component-login-page');
-    profilePage = findByTestAttr(wrapper, 'component-profile-page');
-
-    expect(profilePage).toHaveLength(1);
-    expect(loginPage).toHaveLength(0);
+    
+    expectToBeTakenToTheProfilePage();
     expect(profilePage.text()).toContain('Elodie');
   });
-
-
 })

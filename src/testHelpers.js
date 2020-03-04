@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 export const setup = (Component, props = {}, state = null) => {
   let wrapper = shallow(<Component { ...props } />);
@@ -8,11 +10,16 @@ export const setup = (Component, props = {}, state = null) => {
   return wrapper;
 }
 
-export const mountedSetup = (Component, props = {}, initialEntries = ['/']) => {
+export const mountedSetup = (Component, props = {}, initialEntries = ['/'], initialState = {}) => {
+  const mockStore = configureStore();
+  const store = mockStore({...initialState});
+
   return mount(
-    <MemoryRouter initialEntries={[...initialEntries]}>
-      <Component { ...props } />
-    </MemoryRouter>
+    <Provider store={store}>
+      <MemoryRouter initialEntries={[...initialEntries]}>
+        <Component { ...props } />
+      </MemoryRouter>
+    </Provider>
   );
 }
 
