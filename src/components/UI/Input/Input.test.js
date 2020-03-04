@@ -4,9 +4,14 @@ import { setup, findByTestAttr } from '../../../testHelpers';
 describe('<Input />', () => {
   let wrapper;
   let inputComponent;
+  let defaultProps = {
+    config: {
+      required: false,
+    }
+  }
 
   beforeEach(() => {
-    wrapper = setup(Input);
+    wrapper = setup(Input, defaultProps);
     inputComponent = findByTestAttr(wrapper, 'component-input');
   });
 

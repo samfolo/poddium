@@ -1,4 +1,4 @@
-import LoginPage from './LoginPage';
+import { LoginPage } from './LoginPage';
 import { setup, findByTestAttr } from '../../testHelpers';
 
 describe('<LoginPage />', () => {
