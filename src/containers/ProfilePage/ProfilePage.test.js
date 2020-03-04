@@ -6,7 +6,7 @@ describe('<ProfilePage />', () => {
   let profilePageComponent;
 
   beforeEach(() => {
-    wrapper = setup(ProfilePage);
+    wrapper = setup(ProfilePage, { user: { username: '' } });
     profilePageComponent = findByTestAttr(wrapper, 'component-profile-page');
   });
 
@@ -14,8 +14,13 @@ describe('<ProfilePage />', () => {
     expect(profilePageComponent).toHaveLength(1);
   });
 
-  it('renders the `Sam` when passed `Sam`', () => {
+  it('renders `Sam` when passed `Sam`', () => {
     wrapper = setup(ProfilePage, { user: { username: 'Sam' } });
     expect(wrapper.text()).toContain('Sam');
+  });
+
+  it('renders `Elodie` when passed `Elodie`', () => {
+    wrapper = setup(ProfilePage, { user: { username: 'Elodie' } });
+    expect(wrapper.text()).toContain('Elodie');
   });
 });
