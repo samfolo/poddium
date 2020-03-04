@@ -31,4 +31,4 @@ describe('signing up', () => {
     expectToBeTakenToTheProfilePage();
     expect(profilePage.text()).toContain('Elodie');
   });
-})
+});

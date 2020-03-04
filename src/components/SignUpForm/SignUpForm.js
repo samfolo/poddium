@@ -5,6 +5,39 @@ import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 
 class SignUpForm extends React.Component {
+  state = {
+    formData: {
+      username: {
+        value: '',
+      },
+      email: {
+        value: '',
+      },
+      password: {
+        value: '',
+      },
+      passwordConfirmation: {
+        value: '',
+      },
+    }
+  }
+
+  handleChange = () => {
+    
+  }
+
+  renderInputs = () => {
+    const fields = Object.keys(this.state.formData);
+    return fields.map((field, i) => (
+      <Input
+        key={`${i}_signUpInput`}
+        data-test={`input-${field}`}
+        onChange={(e) => this.handleChange(e, field)}
+        value={this.state.formData[field].value}
+      />
+    ));
+  }
+
   handleClick = () => {
     this.props.onSubmit();
   }
@@ -12,10 +45,7 @@ class SignUpForm extends React.Component {
   render() {
     return (
       <div className={Classes.SignUpForm} data-test="component-sign-up-form">
-        <Input data-test="input-username" />
-        <Input data-test="input-email" />
-        <Input data-test="input-password" />
-        <Input data-test="input-passwordConfirmation" />
+        {this.renderInputs()}
 
         <Button data-test="submit-form-sign-up" onClick={this.handleClick} />
       </div>
