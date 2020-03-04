@@ -8,6 +8,20 @@ describe('signing up', () => {
       info: {}
     }
   }
+
+  // valid details
+  const runValidSignupTestWith = user => {
+    signUp(wrapper, user);
+    const profilePage = findByTestAttr(wrapper, 'component-profile-page');
+    expect(profilePage.text()).toContain(user.username);
+  }
+
+  // invalid details
+  const runInvalidSignupTestWith = user => {
+    signUp(wrapper, user);
+    const loginPage = findByTestAttr(wrapper, 'component-login-page');
+    expect(loginPage.text()).toContain('Invalid Signup');
+  }
   
   beforeEach(() => {
     wrapper = mountedSetup(App, {}, ['/login'], initialState);
@@ -21,9 +35,7 @@ describe('signing up', () => {
       passwordConfirmation: '1234icecream'
     }
 
-    signUp(wrapper, elodie);
-    const profilePage = findByTestAttr(wrapper, 'component-profile-page');
-    expect(profilePage.text()).toContain('Elodie');
+    runValidSignupTestWith(elodie);
   });
 
   test('a user named Sam signs up correctly', () => {
@@ -34,9 +46,7 @@ describe('signing up', () => {
       passwordConfirmation: '1234icecream'
     }
 
-    signUp(wrapper, sam);
-    const profilePage = findByTestAttr(wrapper, 'component-profile-page');
-    expect(profilePage.text()).toContain('Sam');
+    runValidSignupTestWith(sam);
   });
 
   test('a user named June signs up incorrectly (mismatched passwords)', () => {
@@ -47,21 +57,28 @@ describe('signing up', () => {
       passwordConfirmation: '1234ice-cream'
     }
 
-    signUp(wrapper, june);
-    const loginPage = findByTestAttr(wrapper, 'component-login-page');
-    expect(loginPage.text()).toContain('Invalid Signup');
+    runInvalidSignupTestWith(june);
   });
 
   test('a user named Mike signs up incorrectly (invalid email)', () => {
-    const june = {
+    const mike = {
       username: 'Mike',
       email: 'mike@example..com',
       password: '1234icecream',
       passwordConfirmation: '1234icecream'
     }
 
-    signUp(wrapper, june);
-    const loginPage = findByTestAttr(wrapper, 'component-login-page');
-    expect(loginPage.text()).toContain('Invalid Signup');
+    runInvalidSignupTestWith(mike);
+  });
+
+  test('a user named Ramon signs up incorrectly (invalid email)', () => {
+    const ramon = {
+      username: 'Ramon',
+      email: 'ramon@example@com',
+      password: '1234icecream',
+      passwordConfirmation: '1234icecream'
+    }
+
+    runInvalidSignupTestWith(ramon);
   });
 });

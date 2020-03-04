@@ -10,15 +10,27 @@ class SignUpForm extends React.Component {
     formData: {
       username: {
         value: '',
+        config: {
+          required: true,
+        },
       },
       email: {
         value: '',
+        config: {
+          required: true,
+        },
       },
       password: {
         value: '',
+        config: {
+          required: true,
+        },
       },
       passwordConfirmation: {
         value: '',
+        config: {
+          required: true,
+        },
       },
     }
   }
@@ -62,7 +74,7 @@ class SignUpForm extends React.Component {
         data-test={`input-${field}`}
         onChange={(e) => this.handleChange(e, field)}
         value={this.state.formData[field].value}
-      />
+        config={this.state.formData[field].config} />
     ));
   }
 

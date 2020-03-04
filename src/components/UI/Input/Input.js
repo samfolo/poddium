@@ -8,6 +8,7 @@ class Input extends React.Component {
         type="text"
         className={Classes.Input}
         data-test="component-input"
+        required={this.props.config.required}
         onChange={this.props.onChange} />
     );
   }
