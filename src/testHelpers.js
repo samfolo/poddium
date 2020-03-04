@@ -2,9 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
 import store from './store';
 
 
@@ -15,9 +12,6 @@ export const setup = (Component, props = {}, state = null) => {
 }
 
 export const mountedSetup = (Component, props = {}, initialEntries = ['/'], initialState = {}) => {
-  const mockStore = configureStore([thunk]);
-  
-  // console.log(store)
   return mount(
     <Provider store={store}>
       <MemoryRouter initialEntries={[...initialEntries]}>
@@ -39,13 +33,13 @@ export const findByTestAttr = (wrapper, testAttr) => wrapper.find(`[data-test='$
 export const findById = (wrapper, id) => wrapper.find({ id });
 
 
-export const signUp = (wrapper, data) => {
+export const signUp = (wrapper, user) => {
   findByTestAttr(wrapper, 'sign-up').simulate('click');
 
-  fill(findByTestAttr(wrapper, 'input-username')).with(data.username || '');
-  fill(findByTestAttr(wrapper, 'input-email')).with(data.email || '');
-  fill(findByTestAttr(wrapper, 'input-password')).with(data.password || '');
-  fill(findByTestAttr(wrapper, 'input-passwordConfirmation')).with(data.passwordConfirmation || '');
+  fill(findByTestAttr(wrapper, 'input-username')).with(user.username || '');
+  fill(findByTestAttr(wrapper, 'input-email')).with(user.email || '');
+  fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
+  fill(findByTestAttr(wrapper, 'input-passwordConfirmation')).with(user.passwordConfirmation || '');
 
   findByTestAttr(wrapper, 'submit-form-sign-up').simulate('click');
 }

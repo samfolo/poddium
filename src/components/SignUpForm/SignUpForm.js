@@ -52,7 +52,6 @@ class SignUpForm extends React.Component {
         password: data.password.value,
         passwordConfirmation: data.passwordConfirmation.value,
       }
-
       this.props.onSubmit(payload);
     } else {
       this.props.onInvalidSignUp();
@@ -60,7 +59,8 @@ class SignUpForm extends React.Component {
   }
 
   isValidSignUp = () => {
-    const passwordsMatch = this.state.formData.password.value === this.state.formData.passwordConfirmation.value;
+    const form = this.state.formData;
+    const passwordsMatch = form.password.value === form.passwordConfirmation.value;
     const validEmailGiven = emailRegex.test(this.state.formData.email.value);
     let noEmptyFields = true;
 

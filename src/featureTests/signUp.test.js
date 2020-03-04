@@ -49,7 +49,7 @@ describe('signing up', () => {
       const loginPage = findByTestAttr(wrapper, 'component-login-page');
       expect(loginPage.text()).toContain('Invalid Signup');
     }
-    
+
     test('a user named June signs up incorrectly (mismatched passwords)', () => {
       const june = {
         username: 'June',
@@ -92,6 +92,39 @@ describe('signing up', () => {
       }
   
       runInvalidSignupTestWith(ramon);
+    });
+
+    test('a user named July signs up incorrectly (missing email)', () => {
+      const july = {
+        username: 'July',
+        email: '',
+        password: '1234icecream',
+        passwordConfirmation: '1234icecream'
+      }
+  
+      runInvalidSignupTestWith(july);
+    });
+
+    test('a user named Asa signs up incorrectly (missing password)', () => {
+      const asa = {
+        username: 'Asa',
+        email: 'asa@example.com',
+        password: '',
+        passwordConfirmation: '1234icecream'
+      }
+  
+      runInvalidSignupTestWith(asa);
+    });
+
+    test('a user named Daniel signs up incorrectly (missing password)', () => {
+      const daniel = {
+        username: 'Daniel',
+        email: 'daniel@example.com',
+        password: '1234icecream',
+        passwordConfirmation: ''
+      }
+  
+      runInvalidSignupTestWith(daniel);
     });
   });
 });
