@@ -13,4 +13,9 @@ describe('<ProfilePage />', () => {
   it('renders without error', () => {
     expect(profilePageComponent).toHaveLength(1);
   });
+
+  it('renders the `Sam` when passed `Sam`', () => {
+    wrapper = setup(ProfilePage, { user: { username: 'Sam' } });
+    expect(wrapper.text()).toContain('Sam');
+  });
 });

@@ -4,7 +4,9 @@ import Classes from './ProfilePage.module.css';
 class ProfilePage extends React.Component {
   render() {
     return (
-      <div data-test="component-profile-page" />
+      <div data-test="component-profile-page">
+        Sam
+      </div>
     );
   }
 }
