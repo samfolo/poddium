@@ -42,9 +42,22 @@ describe('signing up', () => {
   test('a user named June signs up incorrectly (mismatched passwords)', () => {
     const june = {
       username: 'June',
-      email: 'sam@example.com',
+      email: 'june@example.com',
       password: '1234icecream',
       passwordConfirmation: '1234ice-cream'
+    }
+
+    signUp(wrapper, june);
+    const loginPage = findByTestAttr(wrapper, 'component-login-page');
+    expect(loginPage.text()).toContain('Invalid Signup');
+  });
+
+  test('a user named Mike signs up incorrectly (invalid email)', () => {
+    const june = {
+      username: 'Mike',
+      email: 'mike@example..com',
+      password: '1234icecream',
+      passwordConfirmation: '1234icecream'
     }
 
     signUp(wrapper, june);

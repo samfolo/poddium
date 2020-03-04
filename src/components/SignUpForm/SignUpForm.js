@@ -1,5 +1,6 @@
 import React from 'react';
 import Classes from './SignUpForm.module.css';
+import { emailRegex } from '../../util';
 
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
@@ -46,7 +47,12 @@ class SignUpForm extends React.Component {
     }
   }
 
-  isValidSignUp = () => this.state.formData.password.value === this.state.formData.passwordConfirmation.value;
+  isValidSignUp = () => {
+    return (
+      this.state.formData.password.value === this.state.formData.passwordConfirmation.value &&
+        emailRegex.test(this.state.formData.email.value)
+    );
+  }
 
   renderInputs = () => {
     const fields = Object.keys(this.state.formData);
