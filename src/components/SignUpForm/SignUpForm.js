@@ -31,17 +31,22 @@ class SignUpForm extends React.Component {
   }
 
   handleSubmit = () => {
-    const data = this.state.formData;
-    
-    const payload = { 
-      username: data.username.value,
-      email: data.email.value,
-      password: data.password.value,
-      passwordConfirmation: data.passwordConfirmation.value,
-    }
+    if (this.isValidSignUp()) {
+      const data = this.state.formData;
+      const payload = { 
+        username: data.username.value,
+        email: data.email.value,
+        password: data.password.value,
+        passwordConfirmation: data.passwordConfirmation.value,
+      }
 
-    this.props.onSubmit(payload);
+      this.props.onSubmit(payload);
+    } else {
+      this.props.onInvalidSignUp();
+    }
   }
+
+  isValidSignUp = () => this.state.formData.password.value === this.state.formData.passwordConfirmation.value;
 
   renderInputs = () => {
     const fields = Object.keys(this.state.formData);
@@ -65,6 +70,7 @@ class SignUpForm extends React.Component {
         {this.renderInputs()}
 
         <Button data-test="submit-form-sign-up" onClick={this.handleSubmit} />
+        {this.props.isInvalidSignUp ? <div>Invalid Signup</div> : null}
       </div>
     );
   }

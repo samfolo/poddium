@@ -6,3 +6,9 @@ export const storeUser = info => {
     info,
   }
 }
+
+export const invalidSignUp = () => {
+  return {
+    type: actionTypes.INVALID_SIGNUP,
+  }
+}

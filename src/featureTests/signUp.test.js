@@ -35,8 +35,20 @@ describe('signing up', () => {
     }
 
     signUp(wrapper, sam);
-    wrapper.prop('store')
     const profilePage = findByTestAttr(wrapper, 'component-profile-page');
     expect(profilePage.text()).toContain('Sam');
+  });
+
+  test('a user named June signs up incorrectly (mismatched passwords)', () => {
+    const june = {
+      username: 'June',
+      email: 'sam@example.com',
+      password: '1234icecream',
+      passwordConfirmation: '1234ice-cream'
+    }
+
+    signUp(wrapper, june);
+    const loginPage = findByTestAttr(wrapper, 'component-login-page');
+    expect(loginPage.text()).toContain('Invalid Signup');
   });
 });

@@ -21,7 +21,11 @@ export class LoginPage extends React.Component {
 
   render() {
     const signInForm = this.state.isSignIn ? <div data-test="sign-in-form" /> : null;
-    const signUpForm = this.state.isSignUp ? <SignUpForm data-test="sign-up-form" onSubmit={this.handleSignUp} /> : null;
+    const signUpForm = this.state.isSignUp ? <SignUpForm 
+      data-test="sign-up-form"
+      onSubmit={this.handleSignUp}
+      isInvalidSignUp={this.props.isInvalidSignUp}
+      onInvalidSignUp={this.props.onInvalidSignUp} /> : null;
 
     const buttons = this.state.isSignIn || this.state.isSignUp ? null : [
       <div key="sign-up" data-test="sign-up" onClick={this.toggleSignUp}>Sign up</div>,
@@ -37,10 +41,17 @@ export class LoginPage extends React.Component {
   }
 }
 
-const mapDispatchToProps =  dispatch => {
+const mapStateToProps = state => {
   return {
-    onSignUp: user => dispatch(actionCreators.storeUser(user)),
+    isInvalidSignUp: state.user.isInvalidSignUp,
   }
 }
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    onSignUp: user => dispatch(actionCreators.storeUser(user)),
+    onInvalidSignUp: () => dispatch(actionCreators.invalidSignUp()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

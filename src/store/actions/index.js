@@ -1,1 +1,1 @@
-export { storeUser } from './user';
+export { storeUser, invalidSignUp } from './user';

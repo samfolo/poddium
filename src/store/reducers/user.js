@@ -3,11 +3,13 @@ import { updatedObject } from '../util';
 
 const initialState = {
   info: null,
+  isInvalidSignUp: false,
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.STORE_USER : return updatedObject(state, { info: action.info });
+    case actionTypes.INVALID_SIGNUP : return updatedObject(state, { isInvalidSignUp: true });
     default: return state;
   }
 }
