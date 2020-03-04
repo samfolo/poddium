@@ -3,8 +3,6 @@ import App from '../containers/App/App';
 
 describe('signing up', () => {
   let wrapper;
-  let loginPage;
-  let profilePage;
   let initialState = {
     user: {
       info: {}
