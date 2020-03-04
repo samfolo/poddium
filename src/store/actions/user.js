@@ -1,8 +1,8 @@
 import * as actionTypes from './actionTypes';
 
-export const storeUser = user => {
+export const storeUser = info => {
   return {
     type: actionTypes.STORE_USER,
-    user
+    info,
   }
 }

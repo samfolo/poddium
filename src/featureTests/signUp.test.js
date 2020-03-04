@@ -5,17 +5,14 @@ describe('signing up', () => {
   let wrapper;
   let loginPage;
   let profilePage;
-
-  const expectToBeTakenToTheProfilePage = () => {
-    loginPage = findByTestAttr(wrapper, 'component-login-page');
-    profilePage = findByTestAttr(wrapper, 'component-profile-page');
-
-    expect(profilePage).toHaveLength(1);
-    expect(loginPage).toHaveLength(0);
+  let initialState = {
+    user: {
+      info: {}
+    }
   }
   
   beforeEach(() => {
-    wrapper = mountedSetup(App, {}, ['/login']);
+    wrapper = mountedSetup(App, {}, ['/login'], initialState);
   });
 
   test('a user named Elodie signs up correctly', () => {
@@ -27,8 +24,21 @@ describe('signing up', () => {
     }
 
     signUp(wrapper, elodie);
-    
-    expectToBeTakenToTheProfilePage();
+    const profilePage = findByTestAttr(wrapper, 'component-profile-page');
     expect(profilePage.text()).toContain('Elodie');
+  });
+
+  test('a user named Sam signs up correctly', () => {
+    const sam = {
+      username: 'Sam',
+      email: 'sam@example.com',
+      password: '1234icecream',
+      passwordConfirmation: '1234icecream'
+    }
+
+    signUp(wrapper, sam);
+    wrapper.prop('store')
+    const profilePage = findByTestAttr(wrapper, 'component-profile-page');
+    expect(profilePage.text()).toContain('Sam');
   });
 });

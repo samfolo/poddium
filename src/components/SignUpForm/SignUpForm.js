@@ -22,8 +22,25 @@ class SignUpForm extends React.Component {
     }
   }
 
-  handleChange = () => {
+  handleChange = (e, field) => {
+    const formData = {...this.state.formData};
+    const targetField = {...formData[field]};
+    targetField.value = e.target.value;
+    formData[field] = targetField;
+    this.setState({ formData })
+  }
+
+  handleSubmit = () => {
+    const data = this.state.formData;
     
+    const payload = { 
+      username: data.username.value,
+      email: data.email.value,
+      password: data.password.value,
+      passwordConfirmation: data.passwordConfirmation.value,
+    }
+
+    this.props.onSubmit(payload);
   }
 
   renderInputs = () => {
@@ -47,7 +64,7 @@ class SignUpForm extends React.Component {
       <div className={Classes.SignUpForm} data-test="component-sign-up-form">
         {this.renderInputs()}
 
-        <Button data-test="submit-form-sign-up" onClick={this.handleClick} />
+        <Button data-test="submit-form-sign-up" onClick={this.handleSubmit} />
       </div>
     );
   }

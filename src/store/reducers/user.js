@@ -1,17 +1,13 @@
 import * as actionTypes from '../actions/actionTypes';
+import { updatedObject } from '../util';
 
 const initialState = {
-  user: null,
+  info: null,
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.STORE_USER : 
-      console.log('this');
-      return {
-        ...state,
-        user: action.user,
-      }
+    case actionTypes.STORE_USER : return updatedObject(state, { info: action.info });
     default: return state;
   }
 }
