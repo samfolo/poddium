@@ -5,7 +5,7 @@ class ProfilePage extends React.Component {
   render() {
     return (
       <div data-test="component-profile-page">
-        {this.props.user.username === 'Sam' ? 'Sam' : 'Elodie'}
+        {this.props.user.username}
       </div>
     );
   }

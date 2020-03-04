@@ -14,13 +14,14 @@ describe('<ProfilePage />', () => {
     expect(profilePageComponent).toHaveLength(1);
   });
 
-  it('renders `Sam` when passed `Sam`', () => {
-    wrapper = setup(ProfilePage, { user: { username: 'Sam' } });
-    expect(wrapper.text()).toContain('Sam');
-  });
+  const runTestWith = username => {
+    wrapper = setup(ProfilePage, { user: { username } });
+    expect(wrapper.text()).toContain(username);
+  }
 
-  it('renders `Elodie` when passed `Elodie`', () => {
-    wrapper = setup(ProfilePage, { user: { username: 'Elodie' } });
-    expect(wrapper.text()).toContain('Elodie');
-  });
+  describe('text()', () => {
+    it('renders `Sam` when passed `Sam`', () => runTestWith('Sam'));
+    it('renders `Elodie` when passed `Elodie`', () => runTestWith('Elodie'));
+    it('renders `June` when passed `June`', () => runTestWith('June'));
+  })
 });
