@@ -4,7 +4,8 @@ import Classes from './Button.module.css';
 class Button extends React.Component {
   render() {
     return (
-      <button 
+      <button
+        type="submit"
         className={Classes.Button}
         data-test="component-button"
         onClick={this.props.onClick} />

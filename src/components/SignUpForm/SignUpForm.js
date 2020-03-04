@@ -60,10 +60,14 @@ class SignUpForm extends React.Component {
   }
 
   isValidSignUp = () => {
-    return (
-      this.state.formData.password.value === this.state.formData.passwordConfirmation.value &&
-        emailRegex.test(this.state.formData.email.value)
-    );
+    const passwordsMatch = this.state.formData.password.value === this.state.formData.passwordConfirmation.value;
+    const validEmailGiven = emailRegex.test(this.state.formData.email.value);
+    let noEmptyFields = true;
+
+    const fields = Object.keys(this.state.formData);
+    fields.forEach(field => noEmptyFields = noEmptyFields && this.state.formData[field].value !== '');
+
+    return passwordsMatch && validEmailGiven && noEmptyFields;
   }
 
   renderInputs = () => {
