@@ -91,7 +91,7 @@ class SignUpForm extends React.Component {
       <div className={Classes.SignUpForm} data-test="component-sign-up-form">
         {this.renderInputs()}
 
-        <Button data-test="submit-form-sign-up" onClick={this.handleSubmit} />
+        <Button data-test="submit-form-sign-up" onClick={this.handleSubmit}>Submit</Button>
         {this.props.isInvalidSignUp ? <div>Invalid Signup</div> : null}
       </div>
     );

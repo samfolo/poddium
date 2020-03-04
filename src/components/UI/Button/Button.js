@@ -8,7 +8,9 @@ class Button extends React.Component {
         type="submit"
         className={Classes.Button}
         data-test="component-button"
-        onClick={this.props.onClick} />
+        onClick={this.props.onClick}>
+          {this.props.children}
+        </button>
     )
   }
 }

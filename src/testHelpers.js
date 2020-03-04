@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store';
+import configureStore from 'redux-mock-store';
 
 
 export const setup = (Component, props = {}, state = null) => {
@@ -12,6 +13,18 @@ export const setup = (Component, props = {}, state = null) => {
 }
 
 export const mountedSetup = (Component, props = {}, initialEntries = ['/'], initialState = {}) => {
+  // const mockStore = configureStore([]);
+  // const store = mockStore(initialState);
+
+  // let testReducer = () => ({
+  //   user: {
+  //     info: null,
+  //     isInvalidSignUp: false,
+  //     isAuthenticated: false,
+  //   },
+  // })
+
+  // store.replaceReducer(testReducer);
   return mount(
     <Provider store={store}>
       <MemoryRouter initialEntries={[...initialEntries]}>

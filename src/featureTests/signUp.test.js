@@ -3,14 +3,10 @@ import App from '../containers/App/App';
 
 describe('signing up', () => {
   let wrapper;
-  let initialState = {
-    user: {
-      info: {}
-    }
-  }
-  
+  let logOutButton;
+
   beforeEach(() => {
-    wrapper = mountedSetup(App, {}, ['/login'], initialState);
+    wrapper = mountedSetup(App, {}, ['/login']);
   });
 
   describe('a valid signup', () => {
@@ -19,6 +15,12 @@ describe('signing up', () => {
       const profilePage = findByTestAttr(wrapper, 'component-profile-page');
       expect(profilePage.text()).toContain(user.username);
     }
+
+    afterEach(() => {
+      // teardown by logging out, wiping redux reducer
+      logOutButton = findByTestAttr(wrapper, 'log-out');
+      logOutButton.simulate('click');
+    })
 
     test('a user named Elodie signs up correctly', () => {
       const elodie = {
@@ -83,15 +85,15 @@ describe('signing up', () => {
       runInvalidSignupTestWith(ramon);
     });
   
-    test('a user named Ramon signs up incorrectly (missing username)', () => {
-      const ramon = {
+    test('a user named Pete signs up incorrectly (missing username)', () => {
+      const pete = {
         username: '',
-        email: 'ramon@example.com',
+        email: 'pete@example.com',
         password: '1234icecream',
         passwordConfirmation: '1234icecream'
       }
   
-      runInvalidSignupTestWith(ramon);
+      runInvalidSignupTestWith(pete);
     });
 
     test('a user named July signs up incorrectly (missing email)', () => {

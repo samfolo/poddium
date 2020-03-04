@@ -13,4 +13,10 @@ describe('<Button />', () => {
   it('renders without error', () => {
     expect(buttonComponent).toHaveLength(1);
   });
+
+  it('renders its children', () => {
+    wrapper = setup(Button, { children: 'Go' });
+    buttonComponent = findByTestAttr(wrapper, 'component-button');
+    expect(buttonComponent.text()).toEqual('Go');
+  });
 });
