@@ -45,14 +45,16 @@ export const fill = field => ({ with: value => field.simulate('change', { target
 export const findByTestAttr = (wrapper, testAttr) => wrapper.find(`[data-test='${testAttr}']`);
 export const findById = (wrapper, id) => wrapper.find({ id });
 
+export const flushPromises = () => {
+  return new Promise(resolve => setImmediate(resolve));
+}
 
-export const signUp = (wrapper, user) => {
+export const signUp = async (wrapper, user) => {
   findByTestAttr(wrapper, 'sign-up').simulate('click');
 
   fill(findByTestAttr(wrapper, 'input-username')).with(user.username || '');
   fill(findByTestAttr(wrapper, 'input-email')).with(user.email || '');
   fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
   fill(findByTestAttr(wrapper, 'input-passwordConfirmation')).with(user.passwordConfirmation || '');
-
-  findByTestAttr(wrapper, 'submit-form-sign-up').simulate('click');
+  findByTestAttr(wrapper, 'component-button').simulate('click');
 }

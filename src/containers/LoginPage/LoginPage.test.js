@@ -68,5 +68,5 @@ describe('<LoginPage />', () => {
       expect(signInButton).toHaveLength(0);
       expect(signUpButton).toHaveLength(0);
     });
-  })
-})
+  });
+});

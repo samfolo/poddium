@@ -50,7 +50,6 @@ class SignUpForm extends React.Component {
         username: data.username.value,
         email: data.email.value,
         password: data.password.value,
-        passwordConfirmation: data.passwordConfirmation.value,
       }
       this.props.onSubmit(payload);
     } else {

@@ -2,4 +2,4 @@ export {
   createUser, 
   invalidSignUp,
   logOut
-} from './user';
+} from './user/user';

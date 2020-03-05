@@ -7,7 +7,7 @@ router.route('/').get((req, res) => {
   .catch(error => res.status(400).json(`Error: ${error}`))
 });
 
-router.route('/create').post((req, res) => {
+router.route('/new').post((req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
@@ -15,7 +15,10 @@ router.route('/create').post((req, res) => {
   const newUser = new User({ username, email, password });
 
   newUser.save()
-  .then(users => res.json('User added'))
+  .then(users => {
+    User.find({ email });
+    return res.json(newUser)
+  })
   .catch(error => res.status(400).json(`Error: ${error}`))
 });
 

@@ -1,5 +1,6 @@
 import { mountedSetup, findByTestAttr, signUp } from '../testHelpers';
 import App from '../containers/App/App';
+import axios from '../axios-backend';
 
 describe('signing up', () => {
   let wrapper;
@@ -7,29 +8,27 @@ describe('signing up', () => {
 
   beforeEach(() => {
     wrapper = mountedSetup(App, {}, ['/login']);
+    axios.mockClear();
+    logOutButton = findByTestAttr(wrapper, 'log-out');
+    if (logOutButton.length) logOutButton.simulate('click');
   });
+  
 
   describe('a valid signup', () => {
-    const runValidSignupTestWith = user => {
+    const runValidSignupTestWith = async user => {
       signUp(wrapper, user);
       const profilePage = findByTestAttr(wrapper, 'component-profile-page');
       expect(profilePage.text()).toContain(user.username);
     }
 
-    afterEach(() => {
-      // teardown by logging out, wiping redux reducer
-      logOutButton = findByTestAttr(wrapper, 'log-out');
-      logOutButton.simulate('click');
-    })
-
-    test('a user named Elodie signs up correctly', () => {
+    test('a user named Elodie signs up correctly', async () => {
       const elodie = {
         username: 'Elodie',
         email: 'elodie@example.com',
         password: '1234icecream',
         passwordConfirmation: '1234icecream'
       }
-  
+
       runValidSignupTestWith(elodie);
     });
   
@@ -40,7 +39,7 @@ describe('signing up', () => {
         password: '1234icecream',
         passwordConfirmation: '1234icecream'
       }
-  
+
       runValidSignupTestWith(sam);
     });
   })
@@ -49,7 +48,9 @@ describe('signing up', () => {
     const runInvalidSignupTestWith = user => {
       signUp(wrapper, user);
       const loginPage = findByTestAttr(wrapper, 'component-login-page');
-      expect(loginPage.text()).toContain('Invalid Signup');
+      setImmediate(() => {
+        expect(loginPage.text()).toContain('Invalid Signup');
+      })
     }
 
     test('a user named June signs up incorrectly (mismatched passwords)', () => {

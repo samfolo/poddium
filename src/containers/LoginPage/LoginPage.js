@@ -11,7 +11,7 @@ export class LoginPage extends React.Component {
     isSignUp: false,
   }
 
-  handleSignUp = newUserData => {
+  handleSignUp = async newUserData => {
     this.props.onSignUp(newUserData);
   };
 
