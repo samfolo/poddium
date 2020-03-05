@@ -22,6 +22,23 @@ export const createUser = formData => {
   }
 }
 
+export const logInUser = () => {
+  return {
+    type: actionTypes.LOGIN_USER,
+  }
+}
+
+export const authoriseUser = loginData => {
+  return dispatch => {
+    return axios.post('/sessions/new', loginData)
+    .then(response => {
+      if (response.data === 'authorised') {
+        dispatch(logInUser())
+      }
+    });
+  }
+}
+
 export const invalidSignUp = () => {
   return {
     type: actionTypes.INVALID_SIGNUP,

@@ -1,5 +1,6 @@
 export { 
   createUser, 
   invalidSignUp,
-  logOut
+  logOut,
+  authoriseUser,
 } from './user/user';
