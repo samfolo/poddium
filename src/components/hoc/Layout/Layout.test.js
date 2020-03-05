@@ -10,7 +10,7 @@ describe('<Layout />', () => {
     layoutComponent = findByTestAttr(wrapper, 'component-layout');
   });
 
-  it('renders without error', () => {
+  it('renders without error', async () => {
     expect(layoutComponent).toHaveLength(1);
   });
 });

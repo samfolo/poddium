@@ -1,33 +1,34 @@
 import { mountedSetup, findByTestAttr, signUp } from '../testHelpers';
 import App from '../containers/App/App';
+import axios from '../axios-backend';
 
 describe('signing up', () => {
   let wrapper;
-  let initialState = {
-    user: {
-      info: {}
-    }
-  }
-  
+  let logOutButton;
+
   beforeEach(() => {
-    wrapper = mountedSetup(App, {}, ['/login'], initialState);
+    wrapper = mountedSetup(App, {}, ['/login']);
+    axios.mockClear();
+    logOutButton = findByTestAttr(wrapper, 'log-out');
+    if (logOutButton.length) logOutButton.simulate('click');
   });
+  
 
   describe('a valid signup', () => {
-    const runValidSignupTestWith = user => {
+    const runValidSignupTestWith = async user => {
       signUp(wrapper, user);
       const profilePage = findByTestAttr(wrapper, 'component-profile-page');
       expect(profilePage.text()).toContain(user.username);
     }
 
-    test('a user named Elodie signs up correctly', () => {
+    test('a user named Elodie signs up correctly', async () => {
       const elodie = {
         username: 'Elodie',
         email: 'elodie@example.com',
         password: '1234icecream',
         passwordConfirmation: '1234icecream'
       }
-  
+
       runValidSignupTestWith(elodie);
     });
   
@@ -38,7 +39,7 @@ describe('signing up', () => {
         password: '1234icecream',
         passwordConfirmation: '1234icecream'
       }
-  
+
       runValidSignupTestWith(sam);
     });
   })
@@ -47,7 +48,9 @@ describe('signing up', () => {
     const runInvalidSignupTestWith = user => {
       signUp(wrapper, user);
       const loginPage = findByTestAttr(wrapper, 'component-login-page');
-      expect(loginPage.text()).toContain('Invalid Signup');
+      setImmediate(() => {
+        expect(loginPage.text()).toContain('Invalid Signup');
+      })
     }
 
     test('a user named June signs up incorrectly (mismatched passwords)', () => {
@@ -83,15 +86,15 @@ describe('signing up', () => {
       runInvalidSignupTestWith(ramon);
     });
   
-    test('a user named Ramon signs up incorrectly (missing username)', () => {
-      const ramon = {
+    test('a user named Pete signs up incorrectly (missing username)', () => {
+      const pete = {
         username: '',
-        email: 'ramon@example.com',
+        email: 'pete@example.com',
         password: '1234icecream',
         passwordConfirmation: '1234icecream'
       }
   
-      runInvalidSignupTestWith(ramon);
+      runInvalidSignupTestWith(pete);
     });
 
     test('a user named July signs up incorrectly (missing email)', () => {

@@ -1,1 +1,5 @@
-export { storeUser, invalidSignUp } from './user';
+export { 
+  createUser, 
+  invalidSignUp,
+  logOut
+} from './user/user';

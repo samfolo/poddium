@@ -9,12 +9,10 @@ export class LoginPage extends React.Component {
   state = {
     isSignIn: false,
     isSignUp: false,
-    isAuthenticated: false,
   }
 
-  handleSignUp = user => {
-    this.props.onSignUp(user);
-    this.setState({ isAuthenticated: true })
+  handleSignUp = async newUserData => {
+    this.props.onSignUp(newUserData);
   };
 
   toggleSignUp = () => this.setState(prevState => ({ isSignUp: !prevState.isSignUp }));
@@ -33,7 +31,7 @@ export class LoginPage extends React.Component {
     ]
 
     return <div className={Classes.LoginPage} data-test="component-login-page">
-      {this.state.isAuthenticated ? <Redirect to='/' /> : null}
+      {this.props.isAuth ? <Redirect to='/' /> : null}
       {signInForm}
       {signUpForm}
       {buttons}
@@ -44,12 +42,13 @@ export class LoginPage extends React.Component {
 const mapStateToProps = state => {
   return {
     isInvalidSignUp: state.user.isInvalidSignUp,
+    isAuth: state.user.isAuthenticated,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSignUp: user => dispatch(actionCreators.storeUser(user)),
+    onSignUp: user => dispatch(actionCreators.createUser(user)),
     onInvalidSignUp: () => dispatch(actionCreators.invalidSignUp()),
   }
 }
