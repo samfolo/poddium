@@ -1,6 +1,5 @@
 import { mountedSetup, findByTestAttr, signUp } from '../testHelpers';
 import App from '../containers/App/App';
-import axios from '../axios-backend';
 
 describe('signing up', () => {
   let wrapper;
@@ -8,7 +7,7 @@ describe('signing up', () => {
 
   beforeEach(() => {
     wrapper = mountedSetup(App, {}, ['/login']);
-    axios.mockClear();
+    // revisit..
     logOutButton = findByTestAttr(wrapper, 'log-out');
     if (logOutButton.length) logOutButton.simulate('click');
   });

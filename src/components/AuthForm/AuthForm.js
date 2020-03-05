@@ -21,13 +21,25 @@ class AuthForm extends React.Component {
     },
   }
 
+  handleChange = (e, field) => {
+    let formData = {...this.state.formData};
+    let updatedField = {...formData[field]};
+    updatedField.value = e.target.value;
+    formData[field] = updatedField;
+
+    this.setState({ formData });
+  }
+
   renderInputs = () => {
     const fields = Object.keys(this.state.formData);
     const inputs = fields.map((field, i) => {
       return (
         <Input 
         key={`${i}_authFormInput`}
-        data-test={`input-${field}`} />
+        data-test={`input-${field}`}
+        config={this.state.formData[field].config}
+        value={this.state.formData[field].value}
+        onChange={(e) => this.handleChange(e, field)} />
       );
     });
 

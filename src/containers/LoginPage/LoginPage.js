@@ -4,11 +4,12 @@ import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import { Redirect } from 'react-router-dom';
 import * as actionCreators from '../../store/actions';
 import { connect } from 'react-redux';
+import AuthForm from '../../components/AuthForm/AuthForm';
 
 export class LoginPage extends React.Component {
   state = {
     isSignIn: false,
-    isSignUp: false,
+    isLogin: false,
   }
 
   handleSignUp = async newUserData => {
@@ -16,18 +17,19 @@ export class LoginPage extends React.Component {
   };
 
   toggleSignUp = () => this.setState(prevState => ({ isSignUp: !prevState.isSignUp }));
+  toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
   render() {
-    const signInForm = this.state.isSignIn ? <div data-test="sign-in-form" /> : null;
+    const signInForm = this.state.isLogin ? <AuthForm data-test="login-form" /> : null;
     const signUpForm = this.state.isSignUp ? <SignUpForm 
       data-test="sign-up-form"
       onSubmit={this.handleSignUp}
       isInvalidSignUp={this.props.isInvalidSignUp}
       onInvalidSignUp={this.props.onInvalidSignUp} /> : null;
 
-    const buttons = this.state.isSignIn || this.state.isSignUp ? null : [
+    const buttons = this.state.isLogin || this.state.isSignUp ? null : [
       <div key="sign-up" data-test="sign-up" onClick={this.toggleSignUp}>Sign up</div>,
-      <div key="sign-in" data-test="sign-in">Sign in</div>,
+      <div key="sign-in" data-test="sign-in" onClick={this.toggleLogin}>Sign in</div>,
     ]
 
     return <div className={Classes.LoginPage} data-test="component-login-page">
