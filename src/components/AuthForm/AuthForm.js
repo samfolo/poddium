@@ -4,11 +4,40 @@ import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 
 class AuthForm extends React.Component {
+  state = {
+    formData: {
+      email: {
+        value: '',
+        config: {
+
+        },
+      },
+      password: {
+        value: '',
+        config: {
+
+        },
+      },
+    },
+  }
+
+  renderInputs = () => {
+    const fields = Object.keys(this.state.formData);
+    const inputs = fields.map((field, i) => {
+      return (
+        <Input 
+        key={`${i}_authFormInput`}
+        data-test={`input-${field}`} />
+      );
+    });
+
+    return inputs;
+  }
+
   render() {
     return (
       <div className={Classes.AuthForm} data-test="component-auth-form">
-        <Input data-test="input-email" />
-        <Input data-test="input-password" />
+        {this.renderInputs()}
         <Button data-test="submit-form-auth" />
       </div>
     );
