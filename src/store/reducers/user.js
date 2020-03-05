@@ -11,6 +11,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.CREATE_USER : return updatedObject(state, { info: action.info, isAuthenticated: true });
     case actionTypes.INVALID_SIGNUP : return updatedObject(state, { isInvalidSignUp: true });
+    case actionTypes.LOGIN_USER : return updatedObject(state, { info: action.info, isAuthenticated: true });
     case actionTypes.LOG_OUT : return initialState;
     default: return state;
   }

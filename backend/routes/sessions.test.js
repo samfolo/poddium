@@ -26,6 +26,6 @@ describe('/sessions', () => {
       .send(loginData)
 
     expect(res.statusCode).toBe(200)
-    expect(res.body).toEqual('authorised')
+    expect(res.body.username).toEqual('Sam')
   });
 });

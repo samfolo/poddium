@@ -30,6 +30,16 @@ class AuthForm extends React.Component {
     this.setState({ formData });
   }
 
+  handleSubmit = () => {
+    const data = this.state.formData;
+    const payload = { 
+      email: data.email.value,
+      password: data.password.value,
+    }
+
+    this.props.onSubmit(payload);
+  }
+
   renderInputs = () => {
     const fields = Object.keys(this.state.formData);
     const inputs = fields.map((field, i) => {
@@ -50,7 +60,9 @@ class AuthForm extends React.Component {
     return (
       <div className={Classes.AuthForm} data-test="component-auth-form">
         {this.renderInputs()}
-        <Button data-test="submit-form-auth" />
+        <Button 
+          data-test="submit-form-auth"
+          onClick={this.handleSubmit} />
       </div>
     );
   }

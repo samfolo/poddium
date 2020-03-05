@@ -63,6 +63,7 @@ class SignUpForm extends React.Component {
     const validEmailGiven = emailRegex.test(this.state.formData.email.value);
     let noEmptyFields = true;
 
+    // check for no empty fields
     const fields = Object.keys(this.state.formData);
     fields.forEach(field => noEmptyFields = noEmptyFields && this.state.formData[field].value !== '');
 

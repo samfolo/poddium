@@ -29,8 +29,9 @@ describe('user actionCreators', () => {
       expect(mockAxios.post).toHaveBeenCalledTimes(1);
       expect(mockAxios.post).toHaveBeenCalledWith('/users/new', mockData);
       
+      // automatic login for new users
       actions = store.getActions();
-      expect(actions[0].type).toEqual("CREATE_USER")
+      expect(actions[0].type).toEqual("LOGIN_USER")
     });
   });
 

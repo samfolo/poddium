@@ -1,9 +1,9 @@
 import * as actionTypes from '../actionTypes';
 import axios from '../../../axios-backend';
 
-const persistUser = info => {
+const logInUser = info => {
   return {
-    type: actionTypes.CREATE_USER,
+    type: actionTypes.LOGIN_USER,
     info,
   }
 }
@@ -16,26 +16,22 @@ export const createUser = formData => {
         username: response.data.username,
         email: response.data.email,
       }
-      dispatch(persistUser(userInfo));
+      dispatch(logInUser(userInfo));
     })
     .catch(err => console.log('Locally Caught Error: ', err));
   }
 }
 
-export const logInUser = () => {
-  return {
-    type: actionTypes.LOGIN_USER,
-  }
-}
-
 export const authoriseUser = loginData => {
-  return dispatch => {
-    return axios.post('/sessions/new', loginData)
-    .then(response => {
-      if (response.data === 'authorised') {
-        dispatch(logInUser())
+  return async dispatch => {
+    const response = await axios.post('/sessions/new', loginData);
+    if (response.status === 200) {
+      const userInfo = {
+        username: response.data.username,
+        email: response.data.email,
       }
-    });
+      dispatch(logInUser(userInfo));
+    }
   }
 }
 

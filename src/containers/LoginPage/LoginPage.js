@@ -14,13 +14,17 @@ export class LoginPage extends React.Component {
 
   handleSignUp = async newUserData => {
     this.props.onSignUp(newUserData);
-  };
+  }
+
+  handleLogin = async loginData => {
+    this.props.onLogin(loginData);
+  }
 
   toggleSignUp = () => this.setState(prevState => ({ isSignUp: !prevState.isSignUp }));
   toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
   render() {
-    const signInForm = this.state.isLogin ? <AuthForm data-test="login-form" /> : null;
+    const signInForm = this.state.isLogin ? <AuthForm data-test="login-form" onSubmit={this.handleLogin} /> : null;
     const signUpForm = this.state.isSignUp ? <SignUpForm 
       data-test="sign-up-form"
       onSubmit={this.handleSignUp}
@@ -50,8 +54,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSignUp: user => dispatch(actionCreators.createUser(user)),
+    onSignUp: newUserData => dispatch(actionCreators.createUser(newUserData)),
     onInvalidSignUp: () => dispatch(actionCreators.invalidSignUp()),
+    onLogin: loginData => dispatch(actionCreators.authoriseUser(loginData)),
   }
 }
 

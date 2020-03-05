@@ -13,7 +13,7 @@ router.route('/new').post((req, res) => {
   .then(users => {
     const foundUser = users[0];
     if (foundUser.password === password) {
-      return res.json('authorised');
+      return res.json(foundUser);
     } else {
       throw new Error('Invalid Password')
     }
