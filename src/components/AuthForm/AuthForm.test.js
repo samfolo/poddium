@@ -13,4 +13,11 @@ describe('<AuthForm />', () => {
   it('renders without error', () => {
     expect(authFormComponent).toHaveLength(1);
   });
+
+  describe('fields', () => {
+    it('renders an email field', () => expectLengthOf(wrapper, 'input-email').toBe(1));
+    it('renders a password field', () => expectLengthOf(wrapper, 'input-password').toBe(1));
+  });
+
+  it('renders a submit button', () => expectLengthOf(wrapper, 'submit-form-auth').toBe(1));
 });
