@@ -16,25 +16,22 @@ describe('logging in', () => {
     }
   });
 
-  describe('a valid log-in', () => {
+  xdescribe('a valid log-in', () => {
     test('seperated for now, to let async functions resolve', async () => {
-      return Promise.resolve(() => signUp(wrapper, user))
-      .then(next => {
-        next()
-        logOutButton = findByTestAttr(wrapper, 'log-out');
-        if (logOutButton.length) logOutButton.simulate('click');
-      });
+      signUp(wrapper, user)
     });
 
-    it('takes a user named `Sam` to the homepage', async () => {
+    it('takes a user named `Sam` to their profile page', async () => {
       logOutButton = findByTestAttr(wrapper, 'log-out');
       logOutButton.simulate('click');
-
+      
       findByTestAttr(wrapper, 'sign-in').simulate('click');
       
       fill(findByTestAttr(wrapper, 'input-email')).with(user.email || '');
       fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
       findByTestAttr(wrapper, 'submit-form-auth').simulate('click');
+      const profilePage = findByTestAttr(wrapper, 'component-profile-page');
+      expect(profilePage.text()).toContain(user.username);
     });
   });
 });

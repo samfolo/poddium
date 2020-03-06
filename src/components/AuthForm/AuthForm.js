@@ -30,14 +30,14 @@ class AuthForm extends React.Component {
     this.setState({ formData });
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const data = this.state.formData;
     const payload = { 
       email: data.email.value,
       password: data.password.value,
     }
 
-    this.props.onSubmit(payload);
+    await this.props.onSubmit(payload);
   }
 
   renderInputs = () => {
@@ -63,6 +63,7 @@ class AuthForm extends React.Component {
         <Button 
           data-test="submit-form-auth"
           onClick={this.handleSubmit} />
+        {this.props.isInvalidLogin ? <div>Invalid Login</div> : null}
       </div>
     );
   }

@@ -12,11 +12,11 @@ export class LoginPage extends React.Component {
     isLogin: false,
   }
 
-  handleSignUp = async newUserData => {
+  handleSignUp = newUserData => {
     this.props.onSignUp(newUserData);
   }
 
-  handleLogin = async loginData => {
+  handleLogin = loginData => {
     this.props.onLogin(loginData);
   }
 
@@ -24,7 +24,10 @@ export class LoginPage extends React.Component {
   toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
   render() {
-    const signInForm = this.state.isLogin ? <AuthForm data-test="login-form" onSubmit={this.handleLogin} /> : null;
+    const signInForm = this.state.isLogin ? <AuthForm 
+      data-test="login-form"
+      onSubmit={this.handleLogin}
+      isInvalidLogin={this.props.isInvalidLogin} /> : null;
     const signUpForm = this.state.isSignUp ? <SignUpForm 
       data-test="sign-up-form"
       onSubmit={this.handleSignUp}
@@ -48,6 +51,7 @@ export class LoginPage extends React.Component {
 const mapStateToProps = state => {
   return {
     isInvalidSignUp: state.user.isInvalidSignUp,
+    isInvalidLogin: state.user.isInvalidLogin,
     isAuth: state.user.isAuthenticated,
   }
 }
