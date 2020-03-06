@@ -5,11 +5,13 @@ import { Redirect } from 'react-router-dom';
 import * as actionCreators from '../../store/actions';
 import { connect } from 'react-redux';
 import AuthForm from '../../components/AuthForm/AuthForm';
+import Spotify from '../../util/Spotify/Spotify';
 
 export class LoginPage extends React.Component {
   state = {
     isSignIn: false,
     isLogin: false,
+    res: null,
   }
 
   handleSignUp = newUserData => {
@@ -23,11 +25,17 @@ export class LoginPage extends React.Component {
   toggleSignUp = () => this.setState(prevState => ({ isSignUp: !prevState.isSignUp }));
   toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
+  testClick = (e) => {
+    Spotify.search('dffrnce')
+    .then(response => this.setState({ res: response }))
+  }
+
   render() {
     const signInForm = this.state.isLogin ? <AuthForm 
       data-test="login-form"
       onSubmit={this.handleLogin}
       isInvalidLogin={this.props.isInvalidLogin} /> : null;
+      
     const signUpForm = this.state.isSignUp ? <SignUpForm 
       data-test="sign-up-form"
       onSubmit={this.handleSignUp}
@@ -44,6 +52,7 @@ export class LoginPage extends React.Component {
       {signInForm}
       {signUpForm}
       {buttons}
+      <button onClick={(e) => this.testClick(e)}>CLICK</button>
     </div>
   }
 }
