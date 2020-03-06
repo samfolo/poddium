@@ -9,7 +9,7 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    Spotify.search('podcast')
+    Spotify.search('podcast', '/explore')
     .then(genericResults => {
       this.setState({ searchResults: genericResults });
     });
@@ -18,6 +18,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className={Classes.HomePage} data-test="component-homepage">
+        <div>Explore</div>
         <ShowList data-test="showlist" shows={this.state.searchResults} />
       </div>
     );

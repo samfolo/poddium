@@ -1,8 +1,10 @@
 import React from 'react';
 import Classes from './App.module.css';
-import LoginPage from '../LoginPage/LoginPage';
 import { Switch, Route } from 'react-router-dom';
+
+import LoginPage from '../LoginPage/LoginPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
+import HomePage from '../HomePage/HomePage';
 
 class App extends React.Component {
   render() {
@@ -11,6 +13,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/" exact component={ProfilePage} />
           <Route path="/login" component={LoginPage} />
+          <Route path="/explore" component={HomePage} />
         </Switch>
       </div>
     );

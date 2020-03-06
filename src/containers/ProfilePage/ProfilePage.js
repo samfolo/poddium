@@ -14,7 +14,7 @@ export class ProfilePage extends React.Component {
         <div className={Classes.ProfilePage} data-test="component-profile-page">
           {this.props.info.username}
           <Button data-test="log-out" onClick={this.props.onLogOut}>Log out</Button>
-          <Button data-test="explore" onClick={null}>Explore</Button>
+          <Button data-test="explore" onClick={() => window.location = '/explore'}>Explore</Button>
         </div>
       )
     }
