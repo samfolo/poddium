@@ -1,5 +1,5 @@
 import AuthForm from './AuthForm';
-import { setup, findByTestAttr, expectLengthOf } from '../../testHelpers';
+import { setup, findByTestAttr, expectLengthOf, flushPromises } from '../../testHelpers';
 
 describe('<AuthForm />', () => {
   let wrapper;
