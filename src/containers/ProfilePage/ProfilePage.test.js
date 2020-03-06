@@ -28,4 +28,10 @@ describe('<ProfilePage />', () => {
   it('renders a `Log out` button', () => {
     expectLengthOf(wrapper, 'log-out').toBe(1);
   });
+
+  describe('`explore`', () => {
+    it('renders an `explore` button', () => {
+      expectLengthOf(wrapper, 'explore').toBe(1);
+    });
+  });
 });

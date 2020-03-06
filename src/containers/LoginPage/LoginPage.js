@@ -26,7 +26,7 @@ export class LoginPage extends React.Component {
   toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
   testClick = (e) => {
-    Spotify.search('dffrnce')
+    Spotify.search('podcast', '/login')
     .then(response => this.setState({ res: response }))
   }
 
@@ -52,7 +52,7 @@ export class LoginPage extends React.Component {
       {signInForm}
       {signUpForm}
       {buttons}
-      <button onClick={(e) => this.testClick(e)}>CLICK</button>
+      <button onClick={(e) => this.testClick(e)}>CLICK FOR SPOTIFY DATA (DELETE LATER)</button>
     </div>
   }
 }

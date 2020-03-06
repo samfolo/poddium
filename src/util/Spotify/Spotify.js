@@ -1,10 +1,8 @@
-import { availableMarkets } from '../';
-
 let accessToken;
 let expiresIn;
 
 const Spotify = {
-  getAccessToken() {
+  getAccessToken(route) {
     if (accessToken) {
       return accessToken;
     } else if (window.location.href.match(/access_token=([^&]*)/) && window.location.href.match(/expires_in=([^&]*)/)) {
@@ -14,18 +12,19 @@ const Spotify = {
       window.history.pushState('Access Token', null, '/');
       return accessToken;
     } else {
-      const redirectURI = 'http://localhost:3000/login';
+      const redirectURI = `http://localhost:3000${route}`;
       window.location = `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
     }
   },
 
-  search(searchTerm) {
-    const headers = { headers: { 'Authorization': `Bearer ${this.getAccessToken()}` } };
+  search(searchTerm, route = '/') {
+    const headers = { headers: { 'Authorization': `Bearer ${this.getAccessToken(route)}` } };
     return fetch(`https://api.spotify.com/v1/search?type=show&q=${searchTerm}&market=GB`, headers)
     .then(response => {
       return response.json()
     })
     .then(jsonResponse => {
+      console.log(jsonResponse)
       const results = jsonResponse.shows.items.map(show => {
         return ({
           id: show.id,
@@ -36,12 +35,13 @@ const Spotify = {
           uri: show.uri
         });
       });
-
-      console.log(jsonResponse)
+      
       console.log(results);
       
       return results;
-    });
+    })
+    .catch(err => console.log(err)
+    );
   },
 }
 
