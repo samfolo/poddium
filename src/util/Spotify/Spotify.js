@@ -26,6 +26,7 @@ const Spotify = {
       return response.json()
     })
     .then(jsonResponse => {
+      console.log(jsonResponse)
       const results = jsonResponse.shows.items.map(show => {
         return ({
           id: show.id,
@@ -36,12 +37,13 @@ const Spotify = {
           uri: show.uri
         });
       });
-
-      console.log(jsonResponse)
+      
       console.log(results);
       
       return results;
-    });
+    })
+    .catch(err => console.log(err)
+    );
   },
 }
 

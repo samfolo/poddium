@@ -26,7 +26,7 @@ export class LoginPage extends React.Component {
   toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
   testClick = (e) => {
-    Spotify.search('dffrnce')
+    Spotify.search('podcast')
     .then(response => this.setState({ res: response }))
   }
 

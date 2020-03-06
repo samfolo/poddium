@@ -1,4 +1,4 @@
-import { mountedSetup, findByTestAttr, signUp, flushPromises } from '../testHelpers';
+import { mountedSetup, findByTestAttr, signUp } from '../testHelpers';
 import App from '../containers/App/App';
 
 describe('signing up', () => {

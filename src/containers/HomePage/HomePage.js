@@ -8,12 +8,29 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    Spotify.search('the art of diffrnce')
+    Spotify.search('podcast')
+    .then(genericResults => {
+      this.setState({ searchResults: genericResults });
+    });
+  }
+
+  renderResults = () => {
+    const shows = this.state.searchResults || ['i', 'i'];
+    const podcastComponents = shows.map(show => {
+      return (
+        <div 
+        key={`${show.id}`}
+        data-test="podcast" />
+      );
+    });
+    return podcastComponents;
   }
 
   render() {
     return (
-      <div className={Classes.HomePage} data-test="component-homepage" />
+      <div className={Classes.HomePage} data-test="component-homepage">
+        {this.renderResults()}
+      </div>
     );
   }
 }
