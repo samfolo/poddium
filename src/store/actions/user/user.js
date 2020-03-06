@@ -50,7 +50,7 @@ export const authoriseUser = loginData => {
         dispatch(logInUser(userInfo));
       }
     } catch (err) {
-        return console.log('Client-side Error: ', err);
+      return console.log('Client-side Error: ', err);
     }
   }
 }
