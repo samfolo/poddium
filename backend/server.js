@@ -24,9 +24,13 @@ connection.once('open', () => {
 });
 
 const usersRouter = require('./routes/users');
+const sessionsRouter = require('./routes/sessions');
 
 app.use('/api/users', usersRouter);
+app.use('/api/sessions', sessionsRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
+
+module.exports = app;

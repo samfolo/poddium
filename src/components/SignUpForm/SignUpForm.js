@@ -43,7 +43,7 @@ class SignUpForm extends React.Component {
     this.setState({ formData })
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     if (this.isValidSignUp()) {
       const data = this.state.formData;
       const payload = { 
@@ -51,7 +51,7 @@ class SignUpForm extends React.Component {
         email: data.email.value,
         password: data.password.value,
       }
-      this.props.onSubmit(payload);
+      await this.props.onSubmit(payload);
     } else {
       this.props.onInvalidSignUp();
     }
@@ -63,6 +63,7 @@ class SignUpForm extends React.Component {
     const validEmailGiven = emailRegex.test(this.state.formData.email.value);
     let noEmptyFields = true;
 
+    // check for no empty fields
     const fields = Object.keys(this.state.formData);
     fields.forEach(field => noEmptyFields = noEmptyFields && this.state.formData[field].value !== '');
 
@@ -79,10 +80,6 @@ class SignUpForm extends React.Component {
         value={this.state.formData[field].value}
         config={this.state.formData[field].config} />
     ));
-  }
-
-  handleClick = () => {
-    this.props.onSubmit();
   }
 
   render() {
