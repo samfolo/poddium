@@ -1,6 +1,7 @@
 import React from 'react';
 import Classes from './HomePage.module.css';
 import Spotify from '../../util/Spotify/Spotify';
+import ShowList from '../../components/ShowList/ShowList';
 
 class HomePage extends React.Component {
   state = {
@@ -14,22 +15,10 @@ class HomePage extends React.Component {
     });
   }
 
-  renderResults = () => {
-    const shows = this.state.searchResults || ['i', 'i'];
-    const podcastComponents = shows.map(show => {
-      return (
-        <div 
-        key={`${show.id}`}
-        data-test="podcast" />
-      );
-    });
-    return podcastComponents;
-  }
-
   render() {
     return (
       <div className={Classes.HomePage} data-test="component-homepage">
-        {this.renderResults()}
+        <ShowList data-test="showlist" shows={this.state.searchResults} />
       </div>
     );
   }

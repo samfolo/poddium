@@ -1,5 +1,5 @@
 import HomePage from './HomePage';
-import { setup, findByTestAttr, flushPromises } from '../../testHelpers';
+import { setup, findByTestAttr, flushPromises, expectLengthOf } from '../../testHelpers';
 import Spotify from '../../util/Spotify/Spotify';
 import mockResponses from '../../util/mockApiResonses';
 
@@ -16,14 +16,17 @@ describe('<HomePage />', () => {
     expect(homePageComponent).toHaveLength(1);
   });
 
-  it('renders a list of podcasts on mounting', async () => {
+  it('receives a list of podcasts on mounting', async () => {
     const mock = jest.spyOn(Spotify, 'search');
     mock.mockResolvedValueOnce(mockResponses.getGenericPodcasts());
 
-    wrapper = setup(HomePage);
+    wrapper = setup(HomePage); // trigger componentDidMount;
     await flushPromises();
 
-    const podcasts = findByTestAttr(wrapper, 'podcast');
-    expect(podcasts).toHaveLength(20);
+    expect(wrapper.state('searchResults')).toHaveLength(20);
+  });
+
+  it('renders a <ShowList />', () => {
+    expectLengthOf(wrapper, 'showlist').toBe(1)
   });
 });
