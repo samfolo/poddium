@@ -1,5 +1,5 @@
 import PodcastDisplay from './PodcastDisplay';
-import { setup, findByTestAttr } from '../../../testHelpers';
+import { setup, findByTestAttr, expectLengthOf } from '../../../testHelpers';
 
 describe('<PodcastDisplay />', () => {
   let wrapper;
@@ -12,5 +12,9 @@ describe('<PodcastDisplay />', () => {
 
   it('renders without error', () => {
     expect(podcastDisplayComponent).toHaveLength(1);
+  });
+
+  it('renders an image', () => {
+    expectLengthOf(wrapper, 'image').toBe(1)
   });
 });
