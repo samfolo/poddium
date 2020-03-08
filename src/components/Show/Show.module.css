@@ -1,0 +1,46 @@
+.Show {
+  border-top: 1px solid #505050;
+  border-bottom: 1px solid #505050;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7px;
+  padding: 10px 0;
+  background-color: #1a1a1f;
+}
+
+.Image {
+  width: 100%;
+  border-radius: 40px;
+}
+
+.Name {
+  font-size: 6vw;
+  word-wrap: none;
+  margin: 5px;
+  color: #ffffff
+}
+
+.Publisher {
+  font-size: 3vw;
+  margin-bottom: 10px;
+}
+
+.Description {
+  font-size: 0.6em;
+  line-height: 1.5em;
+  /* border: 1px solid red; */
+  /* text-align: left; */
+  max-height: 80px;
+  padding: 6px 15px;
+  overflow-y: scroll;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.Content {
+  width: 90%;
+  height:90%;
+  margin: 10px 0;
+}

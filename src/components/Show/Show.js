@@ -4,10 +4,12 @@ import Classes from './Show.module.css';
 const Show = props => {
   return (
     <div className={Classes.Show} data-test="component-show">
-      <h1 data-test="name">{props.name}</h1>
-      <img data-test="image" src={props.image.url} alt={props.name} />
-      <div data-test="description">{props.description}</div>
-      <div data-test="publisher">{props.publisher}</div>
+      <div className={Classes.Content}>
+        <h1 data-test="name" className={Classes.Name}>{props.name}</h1>
+        <div data-test="publisher" className={Classes.Publisher}>{props.publisher}</div>
+        <img data-test="image" className={Classes.Image} src={props.image.url} alt={props.name} />
+        <div data-test="description" className={Classes.Description}>{props.description}</div>
+      </div>
     </div>
   )
 }

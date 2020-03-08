@@ -6,12 +6,21 @@ import * as actionCreators from '../../store/actions';
 import { connect } from 'react-redux';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import Spotify from '../../util/Spotify/Spotify';
+import ShowList from '../../components/ShowList/ShowList';
 
 export class LoginPage extends React.Component {
   state = {
     isSignIn: false,
     isLogin: false,
     res: null,
+    searchResults: null,
+  }
+
+  componentDidMount() {
+    Spotify.search('podcast', '/login')
+    .then(genericResults => {
+      this.setState({ searchResults: genericResults });
+    });
   }
 
   handleSignUp = newUserData => {
@@ -27,7 +36,9 @@ export class LoginPage extends React.Component {
 
   testClick = (e) => {
     Spotify.search('podcast', '/login')
-    .then(response => this.setState({ res: response }))
+    .then(genericResults => {
+      this.setState({ searchResults: genericResults });
+    });
   }
 
   render() {
@@ -52,6 +63,7 @@ export class LoginPage extends React.Component {
       {signInForm}
       {signUpForm}
       {buttons}
+      {this.state.searchResults ? <ShowList shows={this.state.searchResults} /> : null}
       <button onClick={(e) => this.testClick(e)}>CLICK FOR SPOTIFY DATA (DELETE LATER)</button>
     </div>
   }
