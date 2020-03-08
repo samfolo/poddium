@@ -8,6 +8,7 @@ import AuthForm from '../../components/AuthForm/AuthForm';
 import Spotify from '../../util/Spotify/Spotify';
 import ShowList from '../../components/ShowList/ShowList';
 
+import axios from 'axios'
 export class LoginPage extends React.Component {
   state = {
     isSignIn: false,
@@ -35,10 +36,12 @@ export class LoginPage extends React.Component {
   toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
   testClick = (e) => {
-    Spotify.search('podcast', '/login')
-    .then(genericResults => {
-      this.setState({ searchResults: genericResults });
-    });
+    // Spotify.search('podcast', '/login')
+    // .then(genericResults => {
+    //   this.setState({ searchResults: genericResults });
+    // });
+    Spotify.search('the art of dffrnce', '/login')
+    Spotify.getEpisodesFor('the art of dffrnce', '/login');
   }
 
   render() {
