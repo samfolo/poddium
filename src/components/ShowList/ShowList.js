@@ -1,5 +1,6 @@
 import React from 'react'
 import Show from '../Show/Show';
+import Classes from './ShowList.module.css';
 
 class ShowList extends React.Component {
   renderShows = () => {
@@ -19,7 +20,7 @@ class ShowList extends React.Component {
 
   render() {
     return (
-      <div data-test="component-show-list">
+      <div data-test="component-show-list" className={Classes.ShowList}>
         {this.renderShows()}
       </div>
     )
