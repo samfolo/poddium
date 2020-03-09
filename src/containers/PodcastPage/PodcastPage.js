@@ -21,7 +21,7 @@ export class PodcastPage extends React.Component {
           data-test="show-display"
           name={this.props.show.name}
           image={this.props.show.image}
-          overlayImage="/play-button-overlay.png"
+          overlayImage="/null-overlay.png"
           description={this.props.show.description}
           publisher={this.props.show.publisher} />
         <div className={Classes.EpisodeListContainer}>

@@ -1,9 +1,18 @@
 import React from 'react';
 import Classes from './PodcastDisplay.module.css';
 
-const PodcastDisplay = props => {  
+const PodcastDisplay = props => {
+  let opacity = '0';
+  if (props.overlayImage) opacity = props.isHover ? '1' : '0';
+  
   return (
-    <div data-test="component-podcast-display" style={{ width: props.size, height: props.size, borderRadius: props.borderRadius, overflow: 'hidden' }}>
+    <div
+      data-test="component-podcast-display"
+      style={{ 
+        width: props.size,
+        height: props.size,
+        borderRadius: props.borderRadius,
+        overflow: props.overflow }}>
       <div 
         data-test="image" 
         onClick={props.onClick}
@@ -15,7 +24,7 @@ const PodcastDisplay = props => {
             className={Classes.Icon}
             src={props.overlayImage}
             alt={props.alt}
-            style={{ opacity: props.isHover ? '1' : '0' }} onMouseOver={props.onMouseOver} />
+            style={{ opacity, overflow: props.overflow }} onMouseOver={props.onMouseOver} />
       </div>
     </div>
   );

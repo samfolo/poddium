@@ -28,6 +28,7 @@ const Show = props => {
 
           <PodcastDisplay
             size="85vw"
+            overflow="hidden"
             data-test="image"
             alt={props.name}
             borderRadius={40}
