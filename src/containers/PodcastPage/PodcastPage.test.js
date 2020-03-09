@@ -6,7 +6,7 @@ describe('<PodcastPage />', () => {
   let podcastPageComponent;
 
   beforeEach(() => {
-    wrapper = setup(PodcastPage);
+    wrapper = setup(PodcastPage, { episodes: [] });
     podcastPageComponent = findByTestAttr(wrapper, 'component-podcast-page');
   });
 
@@ -14,7 +14,11 @@ describe('<PodcastPage />', () => {
     expect(podcastPageComponent).toHaveLength(1);
   });
 
-  it('renders an episode list', () => {
+  it('renders an <EpisodeList />', () => {
     expectLengthOf(wrapper, 'episode-list').toBe(1);
+  });
+
+  it('renders a <ShowDisplay />', () => {
+    expectLengthOf(wrapper, 'show-display').toBe(1);
   });
 });

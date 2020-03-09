@@ -62,7 +62,7 @@ class AuthForm extends React.Component {
         {this.renderInputs()}
         <Button 
           data-test="submit-form-auth"
-          onClick={this.handleSubmit} />
+          onClick={this.handleSubmit}>Log in</Button>
         {this.props.isInvalidLogin ? <div>Invalid Login</div> : null}
       </div>
     );

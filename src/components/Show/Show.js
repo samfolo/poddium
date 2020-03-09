@@ -17,7 +17,6 @@ const Show = props => {
     <div 
       className={Classes.Show} 
       data-test="component-show"
-      onClick={props.onClick}
       style={{ 
         backgroundSize: 'cover',
         background: `url(${props.image.url}) no-repeat center center fixed`, 
@@ -29,7 +28,8 @@ const Show = props => {
           <PodcastDisplay 
             data-test="image" 
             onMouseLeave={hideIcon} 
-            onMouseEnter={showIcon} 
+            onMouseEnter={showIcon}
+            onClick={props.onClick}
             isHover={showsIcon} 
             imageURL={props.image.url} 
             alt={props.name} />

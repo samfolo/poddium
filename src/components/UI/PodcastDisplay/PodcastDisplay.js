@@ -6,6 +6,7 @@ const PodcastDisplay = props => {
     <div data-test="component-podcast-display">
       <div 
         data-test="image" 
+        onClick={props.onClick}
         onMouseEnter={props.onMouseEnter}
         onMouseLeave={props.onMouseLeave}
         className={Classes.ImageContainer}

@@ -1,0 +1,4 @@
+.EpisodeList {
+  display: flex;
+  flex-direction: column;
+}
