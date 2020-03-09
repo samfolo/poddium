@@ -20,7 +20,7 @@ class PodcastPage extends React.Component {
         <EpisodeList
           data-test="episode-list"
           episodes={this.state.episodes}
-          route='/:name/episodes' />
+          route='/shows/:name' />
       </div>
     );
   }
