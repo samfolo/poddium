@@ -35,19 +35,17 @@ export class LoginPage extends React.Component {
   toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
   testClick = (e) => {
-    Spotify.search('podcast', '/login')
-    .then(genericResults => {
-      this.setState({ searchResults: genericResults });
-    });
+    // Spotify.search('the art of dffrnce', '/login')
+    Spotify.getEpisodesFor('the art of dffrnce', '/login');
   }
 
   render() {
-    const signInForm = this.state.isLogin ? <AuthForm 
+    const signInForm = this.state.isLogin ? <AuthForm
       data-test="login-form"
       onSubmit={this.handleLogin}
       isInvalidLogin={this.props.isInvalidLogin} /> : null;
-      
-    const signUpForm = this.state.isSignUp ? <SignUpForm 
+
+    const signUpForm = this.state.isSignUp ? <SignUpForm
       data-test="sign-up-form"
       onSubmit={this.handleSignUp}
       isInvalidSignUp={this.props.isInvalidSignUp}
@@ -60,10 +58,11 @@ export class LoginPage extends React.Component {
 
     return <div className={Classes.LoginPage} data-test="component-login-page">
       {this.props.isAuth ? <Redirect to='/' /> : null}
+      {this.props.testLoadedShow ? <Redirect to={`/shows/${this.props.testLoadedShow.name}`} /> : null}
       {signInForm}
       {signUpForm}
       {buttons}
-      {this.state.searchResults ? <ShowList shows={this.state.searchResults} /> : null}
+      {this.state.searchResults ? <ShowList shows={this.state.searchResults} route='/login' onClick={this.props.onGetTestShows} /> : null}
       <button onClick={(e) => this.testClick(e)}>CLICK FOR SPOTIFY DATA (DELETE LATER)</button>
     </div>
   }
@@ -74,6 +73,7 @@ const mapStateToProps = state => {
     isInvalidSignUp: state.user.isInvalidSignUp,
     isInvalidLogin: state.user.isInvalidLogin,
     isAuth: state.user.isAuthenticated,
+    testLoadedShow: state.podcast.showLoaded,
   }
 }
 
@@ -82,6 +82,7 @@ const mapDispatchToProps = dispatch => {
     onSignUp: newUserData => dispatch(actionCreators.createUser(newUserData)),
     onInvalidSignUp: () => dispatch(actionCreators.invalidSignUp()),
     onLogin: loginData => dispatch(actionCreators.authoriseUser(loginData)),
+    onGetTestShows: (show, route) => dispatch(actionCreators.loadEpisodes(show, route)),
   }
 }
 

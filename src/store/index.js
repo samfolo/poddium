@@ -1,11 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import user from './reducers/user';
 import thunk from 'redux-thunk';
 
+import user from './reducers/user';
+import podcast from './reducers/podcast';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const rootReducer = combineReducers({
   user: user,
+  podcast: podcast,
 });
 
 export const logger = store => {

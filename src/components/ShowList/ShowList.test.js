@@ -32,5 +32,4 @@ describe('<ShowList />', () => {
     it('renders fourteen shows when passed fourteen shows', () => runTestWithShows(14));
     it('renders six shows when passed six shows', () => runTestWithShows(6));
   });
-
-})
+});

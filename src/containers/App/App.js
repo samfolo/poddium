@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import LoginPage from '../LoginPage/LoginPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import HomePage from '../HomePage/HomePage';
+import PodcastPage from '../PodcastPage/PodcastPage';
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
           <Route path="/" exact component={ProfilePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/explore" component={HomePage} />
+          <Route path="/shows/:name" component={PodcastPage} />
         </Switch>
       </div>
     );

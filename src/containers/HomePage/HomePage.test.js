@@ -1,4 +1,4 @@
-import HomePage from './HomePage';
+import { HomePage } from './HomePage';
 import { setup, findByTestAttr, flushPromises, expectLengthOf } from '../../testHelpers';
 import Spotify from '../../util/Spotify/Spotify';
 import mockResponses from '../../util/mockApiResonses';
@@ -8,7 +8,7 @@ describe('<HomePage />', () => {
   let homePageComponent;
 
   beforeEach(() => {
-    wrapper = setup(HomePage);
+    wrapper = setup(HomePage, { onShowClick: jest.fn() });
     homePageComponent = findByTestAttr(wrapper, 'component-homepage');
   });
 

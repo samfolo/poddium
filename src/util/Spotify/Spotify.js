@@ -43,6 +43,33 @@ const Spotify = {
     .catch(err => console.log(err)
     );
   },
+
+  getEpisodesFor(searchTerm, route = '/') {
+    const headers = { headers: { 'Authorization': `Bearer ${this.getAccessToken(route)}` } };
+    return fetch(`https://api.spotify.com/v1/search?type=episode&q=${searchTerm}&market=GB`, headers)
+    .then(response => {
+      return response.json()
+    })
+    .then(jsonResponse => {
+      const results = jsonResponse.episodes.items.map(episode => {
+        return ({
+          id: episode.id,
+          name: episode.name,
+          image: episode.images[0],
+          description: episode.description,
+          release_date: episode.release_date,
+          audio_preview_url: episode.audio_preview_url,
+          uri: episode.uri
+        });
+      });
+      
+      console.log(results);
+      
+      return results;
+    })
+    .catch(err => console.log(err)
+    );
+  },
 }
 
 export default Spotify;
