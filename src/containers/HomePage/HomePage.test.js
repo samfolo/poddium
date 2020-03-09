@@ -1,4 +1,4 @@
-import HomePage from './HomePage';
+import { HomePage } from './HomePage';
 import { setup, findByTestAttr, flushPromises, expectLengthOf } from '../../testHelpers';
 import Spotify from '../../util/Spotify/Spotify';
 import mockResponses from '../../util/mockApiResonses';

@@ -1,12 +1,12 @@
 import * as actionTypes from '../actionTypes';
 import Spotify from '../../../util/Spotify/Spotify';
 
-export const loadEpisodes = (showName, route) => {
+export const loadEpisodes = (show, route) => {
   return async dispatch => {
     try {
-      const episodes = await Spotify.getEpisodesFor(showName, route);
-      console.log(episodes)
-      dispatch(storeEpisodes(episodes, showName));
+      const episodes = await Spotify.getEpisodesFor(show.name, route);
+      console.log(episodes, show)
+      dispatch(storeEpisodes(episodes, show.name));
     } catch (err) {
       console.log(err);
     }

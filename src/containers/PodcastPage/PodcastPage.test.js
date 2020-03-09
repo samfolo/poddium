@@ -1,4 +1,4 @@
-import PodcastPage from './PodcastPage';
+import { PodcastPage } from './PodcastPage';
 import { setup, findByTestAttr, expectLengthOf } from '../../testHelpers';
 
 describe('<PodcastPage />', () => {

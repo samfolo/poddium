@@ -6,7 +6,7 @@ import ShowList from '../../components/ShowList/ShowList';
 import * as actionCreators from '../../store/actions';
 import { connect } from 'react-redux';
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
   state = {
     searchResults: [],
   }

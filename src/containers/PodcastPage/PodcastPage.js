@@ -1,10 +1,10 @@
 import React from 'react';
 import Classes from './PodcastPage.module.css';
-import Spotify from '../../util/Spotify/Spotify';
 import EpisodeList from '../../components/EpisodeList/EpisodeList';
 import { connect } from 'react-redux';
+import Show from '../../components/Show/Show';
 
-class PodcastPage extends React.Component {
+export class PodcastPage extends React.Component {
   state = {
     episodes: [],
   }
@@ -16,7 +16,7 @@ class PodcastPage extends React.Component {
   render() {
     return (
       <div className={Classes.PodcastPage} data-test="component-podcast-page">
-        <div data-test="show-display" />
+        <Show data-test="show-display" />
         <EpisodeList
           data-test="episode-list"
           episodes={this.state.episodes}

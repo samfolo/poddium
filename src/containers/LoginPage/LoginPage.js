@@ -8,7 +8,6 @@ import AuthForm from '../../components/AuthForm/AuthForm';
 import Spotify from '../../util/Spotify/Spotify';
 import ShowList from '../../components/ShowList/ShowList';
 
-import axios from 'axios'
 export class LoginPage extends React.Component {
   state = {
     isSignIn: false,
@@ -83,7 +82,7 @@ const mapDispatchToProps = dispatch => {
     onSignUp: newUserData => dispatch(actionCreators.createUser(newUserData)),
     onInvalidSignUp: () => dispatch(actionCreators.invalidSignUp()),
     onLogin: loginData => dispatch(actionCreators.authoriseUser(loginData)),
-    onGetTestShows: (searchTerm, route) => dispatch(actionCreators.loadEpisodes(searchTerm, route)),
+    onGetTestShows: (show, route) => dispatch(actionCreators.loadEpisodes(show, route)),
   }
 }
 
