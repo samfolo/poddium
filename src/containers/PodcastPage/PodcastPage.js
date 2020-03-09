@@ -16,11 +16,20 @@ export class PodcastPage extends React.Component {
   render() {
     return (
       <div className={Classes.PodcastPage} data-test="component-podcast-page">
-        <Show data-test="show-display" />
-        <EpisodeList
-          data-test="episode-list"
-          episodes={this.state.episodes}
-          route='/shows/:name' />
+        <Show 
+          marginBottom="0"
+          data-test="show-display"
+          name={this.props.show.name}
+          image={this.props.show.image}
+          overlayImage="/play-button-overlay.png"
+          description={this.props.show.description}
+          publisher={this.props.show.publisher} />
+        <div className={Classes.EpisodeListContainer}>
+          <EpisodeList
+            data-test="episode-list"
+            episodes={this.state.episodes}
+            route='/shows/:name' />
+        </div>
       </div>
     );
   }
@@ -29,6 +38,7 @@ export class PodcastPage extends React.Component {
 const mapStateToProps = state => {
   return {
     episodes: state.podcast.episodes,
+    show: state.podcast.showLoaded
   }
 }
 

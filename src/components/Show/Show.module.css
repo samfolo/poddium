@@ -5,7 +5,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
   background-color: #1a1a1f;
   background-blend-mode: color;
 }
@@ -25,7 +24,6 @@
 .Content {
   width: 90%;
   height: auto;
-  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,6 +45,7 @@
 
 .Publisher {
   font-size: 2.7vw;
+  margin-bottom: 15px;
 }
 
 .Description {

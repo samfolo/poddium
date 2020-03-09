@@ -1,12 +1,14 @@
 import { PodcastPage } from './PodcastPage';
 import { setup, findByTestAttr, expectLengthOf } from '../../testHelpers';
+import mockApiResponses from '../../util/mockApiResonses';
 
 describe('<PodcastPage />', () => {
   let wrapper;
   let podcastPageComponent;
+  let defaultProps = { show: mockApiResponses.getGenericPodcasts()[0]};
 
   beforeEach(() => {
-    wrapper = setup(PodcastPage, { episodes: [] });
+    wrapper = setup(PodcastPage, defaultProps);
     podcastPageComponent = findByTestAttr(wrapper, 'component-podcast-page');
   });
 

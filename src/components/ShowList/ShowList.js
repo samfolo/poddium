@@ -11,7 +11,9 @@ class ShowList extends React.Component {
         data-test="show"
         name={show.name}
         image={show.image}
+        marginBottom="15px"
         description={show.description}
+        overlayImage="/podcast-microphone-overlay.png"
         onClick={() => this.props.onClick(show, this.props.route)}
         publisher={show.publisher} />;
     });

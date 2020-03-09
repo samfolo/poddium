@@ -5,18 +5,17 @@ export const loadEpisodes = (show, route) => {
   return async dispatch => {
     try {
       const episodes = await Spotify.getEpisodesFor(show.name, route);
-      console.log(episodes, show)
-      dispatch(storeEpisodes(episodes, show.name));
+      dispatch(storeEpisodes(episodes, show));
     } catch (err) {
       console.log(err);
     }
   }
 }
 
-const storeEpisodes = (episodes, showName) => {
+const storeEpisodes = (episodes, show) => {
   return {
     type: actionTypes.LOAD_EPISODES,
     episodes,
-    showName,
+    show,
   }
 }
