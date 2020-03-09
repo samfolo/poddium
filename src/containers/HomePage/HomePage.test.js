@@ -8,7 +8,7 @@ describe('<HomePage />', () => {
   let homePageComponent;
 
   beforeEach(() => {
-    wrapper = setup(HomePage);
+    wrapper = setup(HomePage, { onShowClick: jest.fn() });
     homePageComponent = findByTestAttr(wrapper, 'component-homepage');
   });
 

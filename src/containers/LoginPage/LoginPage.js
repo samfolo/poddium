@@ -36,11 +36,7 @@ export class LoginPage extends React.Component {
   toggleLogin = () => this.setState(prevState => ({ isLogin: !prevState.isLogin }))
 
   testClick = (e) => {
-    // Spotify.search('podcast', '/login')
-    // .then(genericResults => {
-    //   this.setState({ searchResults: genericResults });
-    // });
-    Spotify.search('the art of dffrnce', '/login')
+    // Spotify.search('the art of dffrnce', '/login')
     Spotify.getEpisodesFor('the art of dffrnce', '/login');
   }
 
@@ -66,7 +62,7 @@ export class LoginPage extends React.Component {
       {signInForm}
       {signUpForm}
       {buttons}
-      {this.state.searchResults ? <ShowList shows={this.state.searchResults} /> : null}
+      {this.state.searchResults ? <ShowList shows={this.state.searchResults} route='/login' onClick={this.props.onGetTestShows} /> : null}
       <button onClick={(e) => this.testClick(e)}>CLICK FOR SPOTIFY DATA (DELETE LATER)</button>
     </div>
   }
@@ -85,6 +81,7 @@ const mapDispatchToProps = dispatch => {
     onSignUp: newUserData => dispatch(actionCreators.createUser(newUserData)),
     onInvalidSignUp: () => dispatch(actionCreators.invalidSignUp()),
     onLogin: loginData => dispatch(actionCreators.authoriseUser(loginData)),
+    onGetTestShows: (searchTerm, route) => dispatch(actionCreators.loadEpisodes(searchTerm, route)),
   }
 }
 

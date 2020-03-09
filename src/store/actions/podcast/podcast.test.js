@@ -21,17 +21,6 @@ describe('podcast actionCreators', () => {
   });
 
   describe('loadEpisodes', () => {
-    it('retrieves the podcasts for a particulat show', async () => {
-      // mockData = { id: 'g3n3r1c' };
-      // mockAxios.get.mockImplementationOnce(() => Promise.resolve({ data: mockData }));
-      // await store.dispatch(actionCreators.createUser(mockData.id));
-
-      // expect(mockAxios.post).toHaveBeenCalledTimes(1);
-      // expect(mockAxios.post).toHaveBeenCalledWith('/users/new', mockData);
-      
-      // // automatic login for new users
-      // actions = store.getActions();
-      // expect(actions[0].type).toEqual("LOGIN_USER")
-    });
+    it('retrieves the podcasts for a particulat show', () => {});
   });
 });

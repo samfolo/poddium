@@ -1,13 +1,20 @@
 import * as actionTypes from '../actionTypes';
-import axios from 'axios';
+import Spotify from '../../../util/Spotify/Spotify';
 
-export const loadEpisodes = id => {
+export const loadEpisodes = (searchTerm, route) => {
   return async dispatch => {
     try {
-      const response = await axios.get(`https://api.spotify.com/v1/shows/3GMZiZnqL4Hib6DD5PGhdj/episodes`);
-      console.log(response.json())
-    } catch (e) {
-      console.log(e)
+      const episodes = await Spotify.getEpisodesFor(searchTerm, route);
+      dispatch(storeEpisodes(episodes));
+    } catch (err) {
+      console.log(err);
     }
+  }
+}
+
+const storeEpisodes = episodes => {
+  return {
+    type: actionTypes.LOAD_EPISODES,
+    episodes,
   }
 }

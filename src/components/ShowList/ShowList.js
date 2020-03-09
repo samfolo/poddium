@@ -12,6 +12,7 @@ class ShowList extends React.Component {
         name={show.name}
         image={show.image}
         description={show.description}
+        onClick={() => this.props.onClick(show.name, this.props.route)}
         publisher={show.publisher} />;
     });
 

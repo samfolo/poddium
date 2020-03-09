@@ -3,6 +3,9 @@ import Classes from './HomePage.module.css';
 import Spotify from '../../util/Spotify/Spotify';
 import ShowList from '../../components/ShowList/ShowList';
 
+import * as actionCreators from '../../store/actions';
+import { connect } from 'react-redux';
+
 class HomePage extends React.Component {
   state = {
     searchResults: [],
@@ -19,10 +22,20 @@ class HomePage extends React.Component {
     return (
       <div className={Classes.HomePage} data-test="component-homepage">
         <div>Explore</div>
-        <ShowList data-test="showlist" shows={this.state.searchResults} />
+        <ShowList 
+          data-test="showlist"
+          shows={this.state.searchResults}
+          route="/explore"
+          onClick={this.props.onShowClick} />
       </div>
     );
   }
 }
 
-export default HomePage;
+const mapDispatchToProps = dispatch => {
+  return {
+    onShowClick: (searchTerm, route) => dispatch(actionCreators.loadEpisodes(searchTerm, route)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(HomePage);
