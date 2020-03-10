@@ -14,6 +14,7 @@ describe('<NavBar />', () => {
     expect(navBarComponent).toHaveLength(1);
   });
 
-  it('renders a home button', () => expectLengthOf(wrapper, 'home-navlink').toBe(1));
-  it('renders a profile button', () => expectLengthOf(wrapper, 'profile-navlink').toBe(1));
+  it('renders a home link', () => expectLengthOf(wrapper, 'home-navlink').toBe(1));
+  it('renders a profile link', () => expectLengthOf(wrapper, 'profile-navlink').toBe(1));
+  it('renders a search link', () => expectLengthOf(wrapper, 'search-navlink').toBe(1));
 });

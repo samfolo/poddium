@@ -7,6 +7,7 @@ class NavBar extends React.Component {
       <div className={Classes.NavBar} data-test="component-navbar">
         <div data-test="home-navlink" />
         <div data-test="profile-navlink" />
+        <div data-test="search-navlink" />
       </div>
     )
   }
