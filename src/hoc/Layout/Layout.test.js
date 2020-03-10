@@ -20,8 +20,13 @@ describe('<Layout />', () => {
     expect(layoutComponent).toHaveLength(1); 
   });
 
-  it('renders 3 children when passed three children', () => {
+  it('renders 3 children when passed 3 children', () => {
     wrapper = setup(Layout, { children: renderChildren(3) });
     expectLengthOf(wrapper, 'child').toBe(3);
+  });
+
+  it('renders 6 children when passed 6 children', () => {
+    wrapper = setup(Layout, { children: renderChildren(6) });
+    expectLengthOf(wrapper, 'child').toBe(6);
   });
 });
