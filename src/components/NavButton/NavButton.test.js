@@ -1,5 +1,5 @@
 import NavButton from './NavButton';
-import { setup, findByTestAttr, expectLengthOf } from '../testHelpers';
+import { setup, findByTestAttr, expectLengthOf } from '../../testHelpers';
 
 describe('<NavButton />', () => {
   let wrapper;
