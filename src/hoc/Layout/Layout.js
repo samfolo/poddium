@@ -4,7 +4,9 @@ import Classes from './Layout.module.css';
 class Layout extends React.Component {
   render() {
     return (
-      <div data-test="component-layout" />
+      <div data-test="component-layout">
+        {this.props.children}
+      </div>
     );
   }
 }
