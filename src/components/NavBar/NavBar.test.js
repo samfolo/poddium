@@ -15,4 +15,5 @@ describe('<NavBar />', () => {
   });
 
   it('renders a home button', () => expectLengthOf(wrapper, 'home-navlink').toBe(1));
+  it('renders a profile button', () => expectLengthOf(wrapper, 'profile-navlink').toBe(1));
 });
