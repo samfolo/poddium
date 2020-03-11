@@ -5,9 +5,8 @@ import NavBar from '../../components/NavBar/NavBar';
 class Layout extends React.Component {
   render() {
     return (
-      <div data-test="component-layout">
-        {this.props.children}
-        <NavBar data-test="navbar" />
+      <div data-test="component-layout" className={Classes.Layout}>
+        <div className={Classes.Children}>{this.props.children}</div>
       </div>
     );
   }

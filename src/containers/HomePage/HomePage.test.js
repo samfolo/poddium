@@ -29,4 +29,6 @@ describe('<HomePage />', () => {
   it('renders a <ShowList />', () => {
     expectLengthOf(wrapper, 'showlist').toBe(1)
   });
+
+  it('renders a <NavBar />', () => expectLengthOf(wrapper, 'navbar').toBe(1));
 });

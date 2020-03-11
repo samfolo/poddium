@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import Spotify from '../../util/Spotify/Spotify';
 import ShowList from '../../components/ShowList/ShowList';
+import NavBar from '../../components/NavBar/NavBar';
 
 export class LoginPage extends React.Component {
   state = {
@@ -63,7 +64,8 @@ export class LoginPage extends React.Component {
       {signUpForm}
       {buttons}
       {this.state.searchResults ? <ShowList shows={this.state.searchResults} route='/login' onClick={this.props.onGetTestShows} /> : null}
-      <button onClick={(e) => this.testClick(e)}>CLICK FOR SPOTIFY DATA (DELETE LATER)</button>
+      {/* <button onClick={(e) => this.testClick(e)}>CLICK FOR SPOTIFY DATA (DELETE LATER)</button> */}
+      <NavBar data-test="navbar" />
     </div>
   }
 }

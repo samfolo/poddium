@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Classes from './NavButton.module.css';
 
 const NavButton = props => {
   return (
-    <li data-test="component-nav-button">
-      <NavLink to={props.link} exact data-test="navlink">{props.children}</NavLink>
+    <li data-test="component-nav-button" className={Classes.NavButton}>
+      <NavLink to={props.link} exact data-test="navlink" className={Classes.NavLink}>{props.children}</NavLink>
     </li>
   )
 }

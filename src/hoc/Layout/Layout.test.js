@@ -31,6 +31,4 @@ describe('<Layout />', () => {
     it('renders 6 children when passed 6 children', () => runTestWith(6));
     it('renders 1 child when passed 1 child', () => runTestWith(1));
   });
-
-  it('renders a <NavBar />', () => expectLengthOf(wrapper, 'navbar').toBe(1));
 });
