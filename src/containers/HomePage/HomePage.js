@@ -5,6 +5,7 @@ import ShowList from '../../components/ShowList/ShowList';
 
 import * as actionCreators from '../../store/actions';
 import { connect } from 'react-redux';
+import NavBar from '../../components/NavBar/NavBar';
 
 export class HomePage extends React.Component {
   state = {
@@ -27,6 +28,7 @@ export class HomePage extends React.Component {
           shows={this.state.searchResults}
           route="/explore"
           onClick={this.props.onShowClick} />
+        <NavBar data-test="navbar" />
       </div>
     );
   }

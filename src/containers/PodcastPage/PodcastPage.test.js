@@ -23,4 +23,6 @@ describe('<PodcastPage />', () => {
   it('renders a <ShowDisplay />', () => {
     expectLengthOf(wrapper, 'show-display').toBe(1);
   });
+
+  it('renders a <NavBar />', () => expectLengthOf(wrapper, 'navbar').toBe(1));
 });

@@ -3,6 +3,7 @@ import Classes from './PodcastPage.module.css';
 import EpisodeList from '../../components/EpisodeList/EpisodeList';
 import { connect } from 'react-redux';
 import Show from '../../components/Show/Show';
+import NavBar from '../../components/NavBar/NavBar';
 
 export class PodcastPage extends React.Component {
   state = {
@@ -16,7 +17,10 @@ export class PodcastPage extends React.Component {
   render() {
     return (
       <div className={Classes.PodcastPage} data-test="component-podcast-page">
-        <Show 
+        <div className={Classes.Header}>
+        <Show
+          size="48vw"
+          borderRadius={16}
           marginBottom="0"
           data-test="show-display"
           name={this.props.show.name}
@@ -24,12 +28,15 @@ export class PodcastPage extends React.Component {
           overlayImage="/null-overlay.png"
           description={this.props.show.description}
           publisher={this.props.show.publisher} />
+        </div>
+
         <div className={Classes.EpisodeListContainer}>
           <EpisodeList
             data-test="episode-list"
             episodes={this.state.episodes}
             route='/shows/:name' />
         </div>
+        <NavBar data-test="navbar" />
       </div>
     );
   }

@@ -1,0 +1,11 @@
+.NavBar {
+  height: 80px;
+  width: 100vw;
+  background: #ff4614;
+  color: #181818;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 6vw;
+  list-style: none;
+}

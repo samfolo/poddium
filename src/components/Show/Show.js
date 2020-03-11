@@ -19,19 +19,19 @@ const Show = props => {
       data-test="component-show"
       style={{
         marginBottom: props.marginBottom,
-        backgroundSize: 'cover',
-        background: `url(${props.image.url}) no-repeat center center fixed` }}>
+        background: `url(${props.image.url}) no-repeat center center fixed`,
+        backgroundSize: '100vh', }}>
       <div className={Classes.Container}>
         <div className={Classes.Content}>
           <h1 data-test="name" className={Classes.Name}>{props.name}</h1>
           <div data-test="publisher" className={Classes.Publisher}>{props.publisher}</div>
 
           <PodcastDisplay
-            size="85vw"
+            size={props.size || "85vw"}
             overflow="hidden"
             data-test="image"
             alt={props.name}
-            borderRadius={40}
+            borderRadius={props.borderRadius || 40}
             isHover={showsIcon} 
             onMouseLeave={hideIcon} 
             onMouseEnter={showIcon}
