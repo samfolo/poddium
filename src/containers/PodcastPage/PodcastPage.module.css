@@ -13,6 +13,5 @@
 
 .EpisodeListContainer {
   overflow: scroll;
-  height: auto;
   width: 100%;
 }
