@@ -1,11 +1,14 @@
 import { mountedSetup, findByTestAttr, signUp } from '../testHelpers';
 import App from '../containers/App/App';
+import mockAxios from '../__mocks__/axios';
+import { LoginPage } from '../containers/LoginPage/LoginPage';
 
 describe('signing up', () => {
   let wrapper;
   let logOutButton;
 
   beforeEach(() => {
+    // mockAxios.post.mockResolvedValue(() => (url, data) => Promise.resolve({ data: { username: 'Elodie', email: data.email, password: data.password } }));
     wrapper = mountedSetup(App, {}, ['/login']);
     // revisit..
     logOutButton = findByTestAttr(wrapper, 'log-out');
@@ -13,11 +16,9 @@ describe('signing up', () => {
   });
   
 
-  xdescribe('a valid signup', () => {
+  describe('a valid signup', () => {
     const runValidSignupTestWith = async user => {
-      signUp(wrapper, user);
-      const profilePage = findByTestAttr(wrapper, 'component-profile-page');
-      expect(profilePage.text()).toContain(user.username);
+      
     }
 
     test('a user named Elodie signs up correctly', async () => {
@@ -27,8 +28,13 @@ describe('signing up', () => {
         password: '1234icecream',
         passwordConfirmation: '1234icecream'
       }
+      
+      signUp(wrapper, elodie);
+      
+      await wrapper.update();
+      await wrapper.update(); // needs both to log in
 
-      await runValidSignupTestWith(elodie);
+      expect(wrapper.text()).toContain(elodie.username);
     });
   
     test('a user named Sam signs up correctly', async () => {

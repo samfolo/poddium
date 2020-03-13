@@ -2,10 +2,32 @@ function flushPromises() {
   return new Promise(resolve => setImmediate(resolve));
 }
 
+let currentUserData;
+
 const mockAxios = jest.genMockFromModule('axios');
 mockAxios.create = jest.fn(() => mockAxios);
-mockAxios.post = jest.fn((url, data) => {
-  return Promise.resolve({ data: { username: 'Sam', email: data.email, password: data.password } });
+mockAxios.post = jest.fn((pathname, data) => {
+  switch (pathname) {
+    case '/sessions/new':
+      return Promise.resolve({ 
+        data: { 
+          username: currentUserData.username, 
+          email: data.email, 
+          password: data.password 
+        } 
+      });
+    default:
+      // stores the sign up information for the sign-in mock
+      currentUserData = data; 
+      return Promise.resolve({
+        data: {
+          username: data.username,
+          email: data.email,
+          password: data.password
+        }
+      });
+  }
+  
 });
 
 export default mockAxios;
