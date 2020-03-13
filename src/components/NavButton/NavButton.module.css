@@ -1,3 +1,9 @@
+.NavButton {
+  height: 20vw;
+  display: flex;
+  align-items: center;
+}
+
 .NavLink {
   text-decoration: none;
 }

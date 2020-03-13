@@ -8,6 +8,7 @@ import AuthForm from '../../components/AuthForm/AuthForm';
 import Spotify from '../../util/Spotify/Spotify';
 import ShowList from '../../components/ShowList/ShowList';
 import NavBar from '../../components/NavBar/NavBar';
+import PageHeading from '../../components/UI/PageHeading/PageHeading';
 
 export class LoginPage extends React.Component {
   state = {
@@ -53,13 +54,14 @@ export class LoginPage extends React.Component {
       onInvalidSignUp={this.props.onInvalidSignUp} /> : null;
 
     const buttons = this.state.isLogin || this.state.isSignUp ? null : [
-      <div key="sign-up" data-test="sign-up" onClick={this.toggleSignUp}>Sign up</div>,
-      <div key="sign-in" data-test="sign-in" onClick={this.toggleLogin}>Sign in</div>,
+      <div key="sign-up" className={Classes.Option} data-test="sign-up" onClick={this.toggleSignUp}>Sign up</div>,
+      <div key="sign-in" className={Classes.Option} data-test="sign-in" onClick={this.toggleLogin}>Sign in</div>,
     ]
 
     return <div className={Classes.LoginPage} data-test="component-login-page">
       {this.props.isAuth ? <Redirect to='/' /> : null}
       {this.props.testLoadedShow ? <Redirect to={`/shows/${this.props.testLoadedShow.name}`} /> : null}
+      <PageHeading>Log in</PageHeading>
       {signInForm}
       {signUpForm}
       {buttons}

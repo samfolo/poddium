@@ -4,7 +4,7 @@
   align-items: center;
   border-top: 1px solid #3a3a3a;
   border-bottom: 1px solid #3a3a3a;
-  background: rgb(21, 21, 21);
+  background: #e9ece0;
 }
 
 .Image {
@@ -25,4 +25,5 @@
   padding: 0 10px;
   font-size: 5vw;
   height: 100%;
+  color: #3a3a3a;
 }
