@@ -44,4 +44,7 @@ export const signUp = async (wrapper, user) => {
   fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
   fill(findByTestAttr(wrapper, 'input-passwordConfirmation')).with(user.passwordConfirmation || '');
   findByTestAttr(wrapper, 'submit-form-sign-up').prop('onClick')();
+
+  await wrapper.update();
+  await wrapper.update();
 }

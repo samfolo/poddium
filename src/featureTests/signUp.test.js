@@ -1,24 +1,25 @@
 import { mountedSetup, findByTestAttr, signUp } from '../testHelpers';
 import App from '../containers/App/App';
-import mockAxios from '../__mocks__/axios';
-import { LoginPage } from '../containers/LoginPage/LoginPage';
 
 describe('signing up', () => {
   let wrapper;
   let logOutButton;
 
   beforeEach(() => {
-    // mockAxios.post.mockResolvedValue(() => (url, data) => Promise.resolve({ data: { username: 'Elodie', email: data.email, password: data.password } }));
-    wrapper = mountedSetup(App, {}, ['/login']);
-    // revisit..
+    wrapper = mountedSetup(App, {}, ['/login']);    
+  });
+
+  afterEach(() => {
     logOutButton = findByTestAttr(wrapper, 'log-out');
     if (logOutButton.length) logOutButton.simulate('click');
-  });
+  })
   
 
   describe('a valid signup', () => {
     const runValidSignupTestWith = async user => {
-      
+      await signUp(wrapper, user);
+
+      expect(wrapper.text()).toContain(user.username);
     }
 
     test('a user named Elodie signs up correctly', async () => {
@@ -29,12 +30,7 @@ describe('signing up', () => {
         passwordConfirmation: '1234icecream'
       }
       
-      signUp(wrapper, elodie);
-      
-      await wrapper.update();
-      await wrapper.update(); // needs both to log in
-
-      expect(wrapper.text()).toContain(elodie.username);
+      runValidSignupTestWith(elodie);
     });
   
     test('a user named Sam signs up correctly', async () => {
@@ -45,17 +41,16 @@ describe('signing up', () => {
         passwordConfirmation: '1234icecream'
       }
 
-      await runValidSignupTestWith(sam);
+      runValidSignupTestWith(sam);
     });
   })
   
   describe('an invalid signup', () => {
-    const runInvalidSignupTestWith = user => {
-      signUp(wrapper, user);
+    const runInvalidSignupTestWith = async user => {
+      await signUp(wrapper, user);
+
       const loginPage = findByTestAttr(wrapper, 'component-login-page');
-      setImmediate(() => {
-        expect(loginPage.text()).toContain('Invalid Signup');
-      })
+      expect(loginPage.text()).toContain('Invalid Signup');
     }
 
     test('a user named June signs up incorrectly (mismatched passwords)', () => {

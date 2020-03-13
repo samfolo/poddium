@@ -15,6 +15,6 @@ describe('<PodcastDisplay />', () => {
   });
 
   it('renders an image', () => {
-    expectLengthOf(wrapper, 'image').toBe(1)
+    expectLengthOf(wrapper, 'image-container').toBe(1)
   });
 });

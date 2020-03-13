@@ -16,9 +16,8 @@ mockAxios.post = jest.fn((pathname, data) => {
           password: data.password 
         } 
       });
-    default:
-      // stores the sign up information for the sign-in mock
-      currentUserData = data; 
+    default: // '/users/new'
+      currentUserData = data; // stores the sign up information for the sign-in mock first
       return Promise.resolve({
         data: {
           username: data.username,

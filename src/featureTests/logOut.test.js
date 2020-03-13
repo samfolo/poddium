@@ -17,10 +17,7 @@ describe('logging out', () => {
         passwordConfirmation: '1234icecream'
       }
 
-      signUp(wrapper, saulGoodman)
-
-      await wrapper.update();
-      await wrapper.update(); // needs both to log in
+      await signUp(wrapper, saulGoodman)
       
       const logOutButton = findByTestAttr(wrapper, 'log-out');
       logOutButton.simulate('click');

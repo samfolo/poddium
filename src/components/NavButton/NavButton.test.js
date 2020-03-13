@@ -15,6 +15,6 @@ describe('<NavButton />', () => {
   });
 
   it('renders a <NavLink /> from react-router', () => {
-    expectLengthOf(wrapper, 'navlink').toBe(1);
+    expectLengthOf(wrapper, 'component-navlink').toBe(1);
   });
 });
