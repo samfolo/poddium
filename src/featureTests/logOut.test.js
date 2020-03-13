@@ -1,7 +1,7 @@
 import { mountedSetup, findByTestAttr, signUp } from '../testHelpers';
 import App from '../containers/App/App';
 
-xdescribe('logging out', () => {
+describe('logging out', () => {
   let wrapper;
   
   beforeEach(() => {
@@ -9,7 +9,7 @@ xdescribe('logging out', () => {
   });
 
   describe('a valid signup and logout', () => {
-    test('a user named Saul Goodman signs up then logs out', () => {
+    test('a user named Saul Goodman signs up then logs out', async () => {
       const saulGoodman = {
         username: 'Saul Goodman',
         email: 'saul@example.com',
@@ -19,6 +19,9 @@ xdescribe('logging out', () => {
 
       signUp(wrapper, saulGoodman)
 
+      await wrapper.update();
+      await wrapper.update(); // needs both to log in
+      
       const logOutButton = findByTestAttr(wrapper, 'log-out');
       logOutButton.simulate('click');
 
