@@ -4,6 +4,8 @@ function flushPromises() {
 
 const mockAxios = jest.genMockFromModule('axios');
 mockAxios.create = jest.fn(() => mockAxios);
-mockAxios.post = jest.fn(() => Promise.resolve({ data: { username: 'Mocked', email: 'Mocked', password: 'Mocked' } }));
+mockAxios.post = jest.fn((url, data) => {
+  return Promise.resolve({ data: { username: 'Sam', email: data.email, password: data.password } });
+});
 
 export default mockAxios;
