@@ -1,0 +1,11 @@
+.AuthForm {
+  color: #ff4614;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+}
+
+.Inputs {
+  margin-bottom: 3vh;
+}

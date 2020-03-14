@@ -24,12 +24,14 @@ class SignUpForm extends React.Component {
         value: '',
         config: {
           required: true,
+          type: 'password',
         },
       },
       passwordConfirmation: {
         value: '',
         config: {
           required: true,
+          type: 'password',
         },
       },
     }
@@ -85,9 +87,14 @@ class SignUpForm extends React.Component {
   render() {
     return (
       <div className={Classes.SignUpForm} data-test="component-sign-up-form">
-        {this.renderInputs()}
+        <div className={Classes.Inputs}>{this.renderInputs()}</div>
 
-        <Button data-test="submit-form-sign-up" onClick={this.handleSubmit}>Submit</Button>
+        <Button 
+          data-test="submit-form-sign-up"
+          width={70}
+          height={17}
+          fontSize={10}
+          onClick={this.handleSubmit}>Submit</Button>
         {this.props.isInvalidSignUp ? <div>Invalid Signup</div> : null}
       </div>
     );

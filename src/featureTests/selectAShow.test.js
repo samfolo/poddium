@@ -5,7 +5,6 @@ import mockResponses from '../util/mockApiResonses';
 
 describe('selecting a show', () => {
   let wrapper;
-  let logOutButton;
   let user;
   let homeButton;
 
@@ -23,7 +22,8 @@ describe('selecting a show', () => {
   
   it("takes the user to the show's page", async () => {
     await signUp(wrapper, user);
-    
+    await wrapper.update();
+
     homeButton = findByTestAttr(wrapper, 'home-navlink');
     findByTestAttr(homeButton, 'component-navlink').at(0).simulate('click', { button: 0 });
     // { button: 0 } is a <NavLink /> check for react-router

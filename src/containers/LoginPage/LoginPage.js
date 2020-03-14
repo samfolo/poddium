@@ -10,6 +10,8 @@ import ShowList from '../../components/ShowList/ShowList';
 import NavBar from '../../components/NavBar/NavBar';
 import PageHeading from '../../components/UI/PageHeading/PageHeading';
 import Logo from '../../components/UI/Logo/Logo';
+import Button from '../../components/UI/Button/Button';
+import Aux from '../../hoc/Aux/Aux';
 
 export class LoginPage extends React.Component {
   state = {
@@ -51,21 +53,50 @@ export class LoginPage extends React.Component {
 
     const buttons = this.state.isLogin || this.state.isSignUp ? null : (
       <div className={Classes.Buttons}>
-        <div key="sign-up" className={Classes.Option} data-test="sign-up" onClick={this.toggleSignUp}>Sign up</div>
-        <div key="sign-in" className={Classes.Option} data-test="sign-in" onClick={this.toggleLogin}>Sign in</div>
+        <Button 
+          data-test="sign-up"
+          width={70}
+          height={17}
+          fontSize={10}
+          onClick={this.toggleSignUp}>Sign up</Button>
+        <Button
+          data-test="sign-in"
+          width={70}
+          height={17}
+          fontSize={10}
+          onClick={this.toggleLogin}>Sign in</Button>
       </div>
     );
 
-    return <div className={Classes.LoginPage} data-test="component-login-page">
-      {this.props.isAuth ? <Redirect to='/' /> : null}
-      <Logo 
-        data-test="poddium-logo"
-        size={60} />
-      {signInForm}
-      {signUpForm}
-      {buttons}
-      <NavBar data-test="navbar" />
-    </div>
+    let header;
+
+    switch (true) {
+      case this.state.isLogin : header = (
+          <Aux>
+            <div className={Classes.LogoContainer}><Logo data-test="poddium-logo" size={40} /></div>
+            <PageHeading>Log in</PageHeading>
+          </Aux>
+        ); break;
+      case this.state.isSignUp : header = (
+        <Aux>
+          <div className={Classes.LogoContainer}><Logo data-test="poddium-logo" size={40} /></div>
+          <PageHeading>Sign up</PageHeading>
+        </Aux>
+      ); break;
+      default : header = <div className={Classes.LogoContainer}><Logo data-test="poddium-logo" size={40} /></div>
+    }
+
+    return (
+      <div className={Classes.LoginPage} data-test="component-login-page">
+        {this.props.isAuth ? <Redirect to='/' /> : null}
+        <div className={Classes.Content}>
+          {header}
+          {signInForm}
+          {signUpForm}
+          {buttons}
+        </div>
+      </div>
+    )
   }
 }
 

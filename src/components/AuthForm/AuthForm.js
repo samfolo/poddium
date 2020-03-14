@@ -9,13 +9,13 @@ class AuthForm extends React.Component {
       email: {
         value: '',
         config: {
-
+          
         },
       },
       password: {
         value: '',
         config: {
-
+          type: 'password',
         },
       },
     },
@@ -59,9 +59,12 @@ class AuthForm extends React.Component {
   render() {
     return (
       <div className={Classes.AuthForm} data-test="component-auth-form">
-        {this.renderInputs()}
+        <div className={Classes.Inputs}>{this.renderInputs()}</div>
         <Button 
           data-test="submit-form-auth"
+          width={70}
+          height={17}
+          fontSize={10}
           onClick={this.handleSubmit}>Log in</Button>
         {this.props.isInvalidLogin ? <div>Invalid Login</div> : null}
       </div>

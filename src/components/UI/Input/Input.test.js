@@ -7,6 +7,7 @@ describe('<Input />', () => {
   let defaultProps = {
     config: {
       required: false,
+      type: 'text',
     }
   }
 
