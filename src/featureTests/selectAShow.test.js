@@ -26,7 +26,8 @@ describe('selecting a show', () => {
     
     homeButton = findByTestAttr(wrapper, 'home-navlink');
     findByTestAttr(homeButton, 'component-navlink').at(0).simulate('click', { button: 0 });
-
+    // { button: 0 } is a <NavLink /> check for react-router
+    
     await wrapper.update();
     await wrapper.update();
 
