@@ -9,6 +9,7 @@ import Spotify from '../../util/Spotify/Spotify';
 import ShowList from '../../components/ShowList/ShowList';
 import NavBar from '../../components/NavBar/NavBar';
 import PageHeading from '../../components/UI/PageHeading/PageHeading';
+import Logo from '../../components/UI/Logo/Logo';
 
 export class LoginPage extends React.Component {
   state = {
@@ -57,7 +58,9 @@ export class LoginPage extends React.Component {
 
     return <div className={Classes.LoginPage} data-test="component-login-page">
       {this.props.isAuth ? <Redirect to='/' /> : null}
-      <PageHeading>Log in</PageHeading>
+      <Logo 
+        data-test="poddium-logo"
+        size={60} />
       {signInForm}
       {signUpForm}
       {buttons}

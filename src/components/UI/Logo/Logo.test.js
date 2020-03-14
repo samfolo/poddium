@@ -1,5 +1,5 @@
 import Logo from './Logo';
-import { setup, findByTestAttr, expectLengthOf } from '../../../testHelpers';
+import { setup, findByTestAttr } from '../../../testHelpers';
 
 describe('<Logo />', () => {
   let wrapper;
@@ -28,5 +28,5 @@ describe('<Logo />', () => {
     it('renders a logo of size 65vw x 65vw when passed 65', () => runTestWith(65));
     it('renders a logo of size 23vw x 23vw when passed 23', () => runTestWith(23));
     it('renders a logo of size 2vw x 2vw when passed 2', () => runTestWith(2));
-  })
+  });
 });

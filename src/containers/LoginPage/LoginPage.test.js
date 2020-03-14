@@ -1,5 +1,5 @@
 import { LoginPage } from './LoginPage';
-import { setup, findByTestAttr } from '../../testHelpers';
+import { setup, findByTestAttr, expectLengthOf } from '../../testHelpers';
 
 describe('<LoginPage />', () => {
   let wrapper;
@@ -69,4 +69,6 @@ describe('<LoginPage />', () => {
       expect(signUpButton).toHaveLength(0);
     });
   });
+
+  it('renders a <Logo />', () => expectLengthOf(wrapper, 'poddium-logo').toBe(1));
 });
