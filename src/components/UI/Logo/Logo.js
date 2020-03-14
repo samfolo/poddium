@@ -8,8 +8,8 @@ const Logo = props => {
         data-test="logo-svg" 
         alt="poddium logo"
         style={{ 
-          width: `30vw`, 
-          height: `30vw`
+          width: `${props.size}vw`, 
+          height: `${props.size}vw`
         }} />
     </div>
   );
