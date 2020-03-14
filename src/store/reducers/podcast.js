@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.LOAD_EPISODES : console.log(action.show); return updatedObject(state, { episodes: action.episodes, showLoaded: action.show });
+    case actionTypes.LOAD_EPISODES : return updatedObject(state, { episodes: action.episodes, showLoaded: action.show });
     default: return state;
   }
 }

@@ -44,4 +44,24 @@ export const signUp = async (wrapper, user) => {
   fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
   fill(findByTestAttr(wrapper, 'input-passwordConfirmation')).with(user.passwordConfirmation || '');
   findByTestAttr(wrapper, 'submit-form-sign-up').prop('onClick')();
+
+  await wrapper.update();
+  await wrapper.update();
+}
+
+export const signUpAndSignIn = async (wrapper, user) => {
+  await signUp(wrapper, user);
+    await wrapper.update();
+
+    let logOutButton = findByTestAttr(wrapper, 'log-out');
+    logOutButton.simulate('click');
+
+    findByTestAttr(wrapper, 'sign-in').simulate('click');
+      
+    fill(findByTestAttr(wrapper, 'input-email')).with(user.email || '');
+    fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
+    await findByTestAttr(wrapper, 'submit-form-auth').prop('onClick')();
+
+    await wrapper.update();
+    await wrapper.update();
 }

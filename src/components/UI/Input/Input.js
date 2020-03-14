@@ -5,7 +5,7 @@ class Input extends React.Component {
   render() {
     return (
       <input 
-        type="text"
+        type={this.props.config.type}
         className={Classes.Input}
         data-test="component-input"
         required={this.props.config.required}

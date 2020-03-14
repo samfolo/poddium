@@ -14,13 +14,14 @@ const PodcastDisplay = props => {
         borderRadius: props.borderRadius,
         overflow: props.overflow }}>
       <div 
-        data-test="image" 
+        data-test="image-container" 
         onClick={props.onClick}
         onMouseEnter={props.onMouseEnter}
         onMouseLeave={props.onMouseLeave}
         className={Classes.ImageContainer}
         style={{ background: `url(${props.imageURL}) no-repeat center center`, backgroundSize: 'cover' }}>
           <img 
+            data-test="overalay-image"
             className={Classes.Icon}
             src={props.overlayImage}
             alt={props.alt}

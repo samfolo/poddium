@@ -4,7 +4,9 @@ import Classes from './PageHeading.module.css';
 class PageHeading extends React.Component {
   render() {
     return (
-      <div className={Classes.PageHeading} data-test="component-page-heading">{this.props.children}</div>
+      <div className={Classes.PageHeading} data-test="component-page-heading">
+        {this.props.children}
+      </div>
     );
   }
 }

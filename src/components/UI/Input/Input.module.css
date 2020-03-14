@@ -1,0 +1,12 @@
+.Input {
+  background: transparent;
+  height: 6vh;
+  width: 80vw;
+  color: #ff4614;
+  border: 1px solid #ff4614;
+  border-radius: 8px;
+  text-align: center;
+  margin: 1vh 0;
+  font-size: 6vw;
+  padding: 4vw;
+}
