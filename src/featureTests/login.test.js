@@ -23,6 +23,7 @@ describe('logging in', () => {
   describe('a valid log-in', () => {
     test('takes a user to their profile page', async () => {
       await signUp(wrapper, user)
+      await wrapper.update();
 
       logOutButton = findByTestAttr(wrapper, 'log-out');
       logOutButton.simulate('click');
@@ -31,7 +32,7 @@ describe('logging in', () => {
       
       fill(findByTestAttr(wrapper, 'input-email')).with(user.email || '');
       fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
-      findByTestAttr(wrapper, 'submit-form-auth').simulate('click');
+      await findByTestAttr(wrapper, 'submit-form-auth').prop('onClick')();
 
       await wrapper.update();
       await wrapper.update(); // needs both to submit
