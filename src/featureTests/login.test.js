@@ -6,11 +6,9 @@ describe('logging in', () => {
   let wrapper;
   let logOutButton;
   let user;
-  let onSignUp;
-  let isAuth;
 
   beforeEach(() => {
-    wrapper = mountedSetup(App, { onSignUp, isAuth }, ['/login']);
+    wrapper = mountedSetup(App, {}, ['/login']);
 
     user = {
       username: 'Sam',
