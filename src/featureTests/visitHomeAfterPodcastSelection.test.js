@@ -30,7 +30,6 @@ describe('visiting home after podcast selection', () => {
     await wrapper.update();
     await wrapper.update();
 
-    console.log(wrapper.debug())
     const allShows = findByTestAttr(wrapper, 'show');
     const randomIndex = Math.floor(Math.random() * allShows.length);
     const randomShow = allShows.at(randomIndex);
