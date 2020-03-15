@@ -19,3 +19,9 @@ const storeEpisodes = (episodes, show) => {
     show,
   }
 }
+
+export const clearLoadedShow = () => {
+  return {
+    type: actionTypes.CLEAR_LOADED_SHOW,
+  }
+}

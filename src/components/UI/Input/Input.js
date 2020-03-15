@@ -4,7 +4,7 @@ import Classes from './Input.module.css';
 class Input extends React.Component {
   render() {
     return (
-      <input 
+      <input
         type={this.props.config.type}
         className={Classes.Input}
         data-test="component-input"

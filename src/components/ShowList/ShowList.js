@@ -1,8 +1,10 @@
 import React from 'react'
 import Show from '../Show/Show';
 import Classes from './ShowList.module.css';
+import { Redirect } from 'react-router';
 
 class ShowList extends React.Component {
+
   renderShows = () => {
     const shows = this.props.shows;
     const showComponents = shows.map(show => {

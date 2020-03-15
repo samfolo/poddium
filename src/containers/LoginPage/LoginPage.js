@@ -4,10 +4,9 @@ import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import { Redirect } from 'react-router-dom';
 import * as actionCreators from '../../store/actions';
 import { connect } from 'react-redux';
+
 import AuthForm from '../../components/AuthForm/AuthForm';
 import Spotify from '../../util/Spotify/Spotify';
-import ShowList from '../../components/ShowList/ShowList';
-import NavBar from '../../components/NavBar/NavBar';
 import PageHeading from '../../components/UI/PageHeading/PageHeading';
 import Logo from '../../components/UI/Logo/Logo';
 import Button from '../../components/UI/Button/Button';
@@ -78,11 +77,11 @@ export class LoginPage extends React.Component {
           </Aux>
         ); break;
       case this.state.isSignUp : header = (
-        <Aux>
-          <div className={Classes.LogoContainer}><Logo data-test="poddium-logo" size={40} /></div>
-          <PageHeading>Sign up</PageHeading>
-        </Aux>
-      ); break;
+          <Aux>
+            <div className={Classes.LogoContainer}><Logo data-test="poddium-logo" size={40} /></div>
+            <PageHeading>Sign up</PageHeading>
+          </Aux>
+        ); break;
       default : header = <div className={Classes.LogoContainer}><Logo data-test="poddium-logo" size={40} /></div>
     }
 
@@ -105,7 +104,6 @@ const mapStateToProps = state => {
     isInvalidSignUp: state.user.isInvalidSignUp,
     isInvalidLogin: state.user.isInvalidLogin,
     isAuth: state.user.isAuthenticated,
-    testLoadedShow: state.podcast.showLoaded,
   }
 }
 

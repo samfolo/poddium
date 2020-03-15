@@ -18,16 +18,16 @@ export class PodcastPage extends React.Component {
     return (
       <div className={Classes.PodcastPage} data-test="component-podcast-page">
         <div className={Classes.Header}>
-        <Show
-          size="48vw"
-          borderRadius={16}
-          marginBottom="0"
-          data-test="show-display"
-          name={this.props.show.name}
-          image={this.props.show.image}
-          overlayImage="/null-overlay.png"
-          description={this.props.show.description}
-          publisher={this.props.show.publisher} />
+          <Show
+            size="48vw"
+            borderRadius={16}
+            marginBottom="0"
+            data-test="show-display"
+            name={this.props.show.name}
+            image={this.props.show.image}
+            overlayImage="/null-overlay.png"
+            description={this.props.show.description}
+            publisher={this.props.show.publisher} />
         </div>
 
         <div className={Classes.EpisodeListContainer}>
@@ -44,8 +44,8 @@ export class PodcastPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    episodes: state.podcast.episodes,
-    show: state.podcast.showLoaded
+    episodes: state.podcast.loadedEpisodes,
+    show: state.podcast.loadedShow
   }
 }
 

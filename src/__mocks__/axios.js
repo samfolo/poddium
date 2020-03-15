@@ -1,7 +1,3 @@
-function flushPromises() {
-  return new Promise(resolve => setImmediate(resolve));
-}
-
 let currentUserData;
 
 const mockAxios = jest.genMockFromModule('axios');
