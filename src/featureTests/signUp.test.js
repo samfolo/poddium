@@ -18,7 +18,6 @@ describe('signing up', () => {
   describe('a valid signup', () => {
     const runValidSignupTestWith = async user => {
       await signUp(wrapper, user);
-
       expect(wrapper.text()).toContain(user.username);
     }
 

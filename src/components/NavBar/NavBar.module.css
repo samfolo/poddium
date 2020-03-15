@@ -1,6 +1,4 @@
 .NavBar {
-  position: relative;
-  z-index: 99;
   height: 80px;
   width: 100vw;
   background: #ff4614;

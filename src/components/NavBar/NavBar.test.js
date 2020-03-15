@@ -1,4 +1,4 @@
-import NavBar from './NavBar';
+import { NavBar } from './NavBar';
 import { setup, findByTestAttr, expectLengthOf } from '../../testHelpers';
 
 describe('<NavBar />', () => {

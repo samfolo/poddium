@@ -7,4 +7,5 @@ export {
 
 export {
   loadEpisodes,
+  clearLoadedShow,
 } from './podcast/podcast';

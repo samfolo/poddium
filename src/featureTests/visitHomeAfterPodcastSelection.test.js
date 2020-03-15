@@ -1,4 +1,4 @@
-import { mountedSetup, findByTestAttr, signUp, fill, signUpAndSignIn } from '../testHelpers';
+import { mountedSetup, findByTestAttr, signUpAndSignIn, expectLengthOf, clickNavLink } from '../testHelpers';
 import App from '../containers/App/App';
 import Spotify from '../util/Spotify/Spotify';
 import mockResponses from '../util/mockApiResonses';
@@ -23,16 +23,17 @@ describe('visiting home after podcast selection', () => {
   it('takes you back to the home page', async () => {
     await signUpAndSignIn(wrapper, user);
 
-    const homeButton = findByTestAttr(wrapper, 'home-navlink');
-    findByTestAttr(homeButton, 'component-navlink').at(0).simulate('click', { button: 0 });
-    // { button: 0 } is a <NavLink /> check for react-router
-
-    await wrapper.update();
-    await wrapper.update();
+    await clickNavLink(wrapper, 'home');
 
     const allShows = findByTestAttr(wrapper, 'show');
     const randomIndex = Math.floor(Math.random() * allShows.length);
     const randomShow = allShows.at(randomIndex);
     await randomShow.prop('onClick')();
+
+    await wrapper.update();
+    expectLengthOf(wrapper, 'component-podcast-page').toBe(1);
+
+    await clickNavLink(wrapper, 'home');
+    expectLengthOf(wrapper, 'component-homepage').toBe(1);
   });
 });

@@ -24,7 +24,7 @@ export class HomePage extends React.Component {
   render() {
     return (
       <div className={Classes.HomePage} data-test="component-homepage">
-        {this.props.selectedShow ? <Redirect to={`/shows/${this.props.selectedShow.name}`} /> : null}
+        {this.props.show ? <Redirect to={`/shows/${this.props.show.name}`} /> : null}
         <PageHeading>Explore</PageHeading>
         <ShowList 
           data-test="showlist"
@@ -39,7 +39,7 @@ export class HomePage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    selectedShow: state.podcast.showLoaded,
+    show: state.podcast.loadedShow,
   }
 }
 

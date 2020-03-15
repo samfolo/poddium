@@ -51,17 +51,25 @@ export const signUp = async (wrapper, user) => {
 
 export const signUpAndSignIn = async (wrapper, user) => {
   await signUp(wrapper, user);
-    await wrapper.update();
+  await wrapper.update();
 
-    let logOutButton = findByTestAttr(wrapper, 'log-out');
-    logOutButton.simulate('click');
+  let logOutButton = findByTestAttr(wrapper, 'log-out');
+  logOutButton.simulate('click');
 
-    findByTestAttr(wrapper, 'sign-in').simulate('click');
-      
-    fill(findByTestAttr(wrapper, 'input-email')).with(user.email || '');
-    fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
-    await findByTestAttr(wrapper, 'submit-form-auth').prop('onClick')();
+  findByTestAttr(wrapper, 'sign-in').simulate('click');
+    
+  fill(findByTestAttr(wrapper, 'input-email')).with(user.email || '');
+  fill(findByTestAttr(wrapper, 'input-password')).with(user.password || '');
+  await findByTestAttr(wrapper, 'submit-form-auth').prop('onClick')();
 
-    await wrapper.update();
-    await wrapper.update();
+  await wrapper.update();
+  await wrapper.update();
+}
+
+export const clickNavLink = async (wrapper, link) => {
+  const navButton = findByTestAttr(wrapper, `${link}-navlink`);
+  findByTestAttr(navButton, 'component-navlink').at(0).simulate('click', { button: 0 });
+
+  await wrapper.update();
+  await wrapper.update();
 }
