@@ -73,3 +73,13 @@ export const clickNavLink = async (wrapper, link) => {
   await wrapper.update();
   await wrapper.update();
 }
+
+export const clickOnARandom = async (wrapper, instance) => {
+  const allInstances = findByTestAttr(wrapper, instance);
+  const randomIndex = Math.floor(Math.random() * allInstances.length);
+  const randomInstance = allInstances.at(randomIndex);
+  await randomInstance.props().onClick();
+
+  await wrapper.update();
+  await wrapper.update();
+}
