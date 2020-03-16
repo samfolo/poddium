@@ -11,15 +11,15 @@ describe('<AudioPlayer />', () => {
     }
   };
 
-  let defaultState = {
+  let initialState = {
     hasEpisodeLoaded: true,
     isPlaying: false,
   }
 
   beforeEach(() => {
-    wrapper = setup(AudioPlayer);
+    wrapper = setup(AudioPlayer, defaultProps, initialState);
     audioPlayerComponent = findByTestAttr(wrapper, 'component-audio-player');
-    window.HTMLMediaElement.prototype.load = jest.fn();
+    // stubbed as jsdom does not support them:
     window.HTMLMediaElement.prototype.play = jest.fn();
     window.HTMLMediaElement.prototype.pause = jest.fn();
   });
@@ -29,11 +29,23 @@ describe('<AudioPlayer />', () => {
 
   describe('when a track is loaded', () => {
     it('can play a track from props', () => {
-      wrapper = setup(AudioPlayer, defaultProps, defaultState);
       const playButton = findByTestAttr(wrapper, 'play-button');
       playButton.simulate('click');
       expect(wrapper.text()).toContain('Test episode');
       expectLengthOf(wrapper, 'pause-button').toBe(1);
+    });
+
+    it('can pause a playing track', () => {
+      const tempState = {
+        hasEpisodeLoaded: true,
+        isPlaying: true,
+      }
+
+      wrapper = setup(AudioPlayer, defaultProps, tempState);
+      const pauseButton = findByTestAttr(wrapper, 'pause-button');
+      pauseButton.simulate('click');
+      expect(wrapper.text()).toContain('Test episode');
+      expectLengthOf(wrapper, 'play-button').toBe(1);
     });
   });
 });
