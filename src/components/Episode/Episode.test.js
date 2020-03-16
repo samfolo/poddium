@@ -17,5 +17,5 @@ describe('<Episode />', () => {
   });
 
   it('renders the episode name', () => expectLengthOf(wrapper, 'name').toBe(1));
-  it('renders the episode image', () => expectLengthOf(wrapper, 'image').toBe(1));
+  it('renders the episode image', () => expectLengthOf(wrapper, 'episode-thumbnail').toBe(1));
 });

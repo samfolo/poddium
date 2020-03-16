@@ -18,7 +18,7 @@ const Episode = props => {
       <PodcastDisplay
         size="20vw"
         alt={props.name}
-        data-test="image"
+        data-test="episode-thumbnail"
         className={Classes.Image}
         imageURL={props.image.url} 
         isHover={showsIcon} 
